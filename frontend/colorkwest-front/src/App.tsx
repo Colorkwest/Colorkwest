@@ -15,6 +15,9 @@ function App() {
       secondary: {
         main: '#EC9007',
       },
+      text: {
+        secondary: '#9A9A9A',
+      },
     },
   });
 

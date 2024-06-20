@@ -1,8 +1,9 @@
-import { Avatar, Box, Typography } from '@mui/material';
-import { BrainAnswer, GetUsersUsersGet200 } from '../generated/dto';
+import { Box, Stack, Typography } from '@mui/material';
+import { GetUsersUsersGet200 } from '../generated/dto';
 import { DetailedQuest } from '../generated/dto/detailedQuest';
 import { useState } from 'react';
-import { RandomAvatar } from './RandomAvatar';
+import { TraitChip } from './TraitChip';
+import { UserAvatar } from './UserAvatar';
 
 interface QuestPostProps {
   quest: DetailedQuest;
@@ -24,57 +25,61 @@ export function QuestPost({ quest, users, handleAnswer }: QuestPostProps) {
         borderRadius: '10px',
       }}
     >
-      <RandomAvatar />
-      <div onClick={() => setExpended((x) => !x)}>
-        <Typography>{quest.title}</Typography>
-        <Typography>{quest.description}</Typography>
-        <div>
-          {quest.brain_answers?.map((item: BrainAnswer, index) => (
-            <a key={'user_' + index}>{item.author}</a>
-          ))}
-        </div>
-        <p>
-          {quest.brain_answers?.length}/{quest.max_participants}
-        </p>
-        {/* {quest.Tags?.map((tag, tagindex) => {
-          return (
-            <Box>
-              <Chip label="Chip Filled" />
-              <Chip label="Chip Outlined" variant="outlined" />
-            </Box>
-          );
-        })} */}
-        <p>{quest.status}</p>
-      </div>
-      {expended && (
-        <div>
-          {quest.status ? (
-            <div>
-              <input
-                type="text"
-                placeholder="please inpu your answer"
-                value={inputAnswer}
-                onChange={(e) => {
-                  setInputAnswer(e.target.value);
-                }}
-              />
-              <button onClick={() => handleAnswer(inputAnswer)}>Answer</button>
-            </div>
-          ) : (
-            <div>This answer is closed.</div>
-          )}
-          <ol>
-            {quest.brain_answers?.map((item: BrainAnswer, index) => (
-              <div key={index}>
-                <p>{item.accepted}</p>
-                <p>{item.author}</p>
-                <p>{item.accepted}</p>
-                <p>{item.accepted}</p>
-              </div>
-            ))}
-          </ol>
-        </div>
-      )}
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <UserAvatar user_id={quest.author} />
+          <Typography
+            sx={{
+              fontSize: '18px',
+              fontWeight: 800,
+              alignContent: 'center',
+            }}
+          >
+            {quest.title}
+          </Typography>
+        </Box>
+        <Stack direction="row" spacing={1}>
+          <TraitChip trait={quest.trait} />
+          <TraitChip trait={quest.trait} />
+          <TraitChip trait={quest.trait} />
+        </Stack>
+        <Typography color="text.secondary">{quest.description}</Typography>
+        <Box sx={{ marginLeft: 'auto' }}>
+          <Typography>
+            {quest.brain_answers?.length}/{quest.max_participants} participants
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   );
 }
+
+// {expended && (
+//   <div>
+//     {quest.status ? (
+//       <div>
+//         <input
+//           type="text"
+//           placeholder="please inpu your answer"
+//           value={inputAnswer}
+//           onChange={(e) => {
+//             setInputAnswer(e.target.value);
+//           }}
+//         />
+//         <button onClick={() => handleAnswer(inputAnswer)}>Answer</button>
+//       </div>
+//     ) : (
+//       <div>This answer is closed.</div>
+//     )}
+//     <ol>
+//       {quest.brain_answers?.map((item: BrainAnswer, index) => (
+//         <div key={index}>
+//           <p>{item.accepted}</p>
+//           <p>{item.author}</p>
+//           <p>{item.accepted}</p>
+//           <p>{item.accepted}</p>
+//         </div>
+//       ))}
+//     </ol>
+//   </div>
+// )}
