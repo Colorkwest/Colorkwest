@@ -6,6 +6,7 @@ import { NewQuestModalComponent } from './NewQuestComponent';
 import { UserProfileComponent } from './UserProfileComponent';
 import { QuestBoxComponent } from './QuestBoxComponent';
 import { QuestionBoxComponent } from './QuestionBoxComponent';
+import { Masonry } from '@mui/lab';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -17,7 +18,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const [newQuestModalOpen, setNewQuestionModalOpen] = useState<boolean>(false);
 
   return (
-    <>
+    <Masonry columns={3} spacing={2}>
       {quests?.data?.map((item) => {
         if (item.type == 1) {
           return (
@@ -38,6 +39,6 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
       <Box width={600} height={600}>
         <StatDisplay str={10} cha={10} int={20} dex={40} />
       </Box>
-    </>
+    </Masonry>
   );
 }
