@@ -5,6 +5,9 @@
  * OpenAPI spec version: 3.0.1
  */
 
+export * from './brainAnswer';
+export * from './brawnParticipant';
+export * from './detailedQuest';
 export * from './hTTPValidationError';
 export * from './quest';
 export * from './questType';
