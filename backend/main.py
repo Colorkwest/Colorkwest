@@ -1,20 +1,15 @@
 from fastapi import FastAPI, HTTPException
-from db import db, Tables, get_brain_answers, get_brawn_participants, get_quest_idx
-from model import (
-    DetailedQuest,
-    Quest,
-    QuestType,
-    Status,
-    User,
-)
-from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
+
+from db import (Tables, db, get_brain_answers, get_brawn_participants,
+                get_quest_idx)
+from model import DetailedQuest, Quest, QuestType, Status, User
 
 app = FastAPI()
 
 origins = [
     "*",
-    "http://localhost:5174",
 ]
 
 app.add_middleware(

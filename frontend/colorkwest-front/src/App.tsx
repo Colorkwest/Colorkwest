@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Box } from '@mui/material';
+import { StatDisplay } from './components/StatDisplay.tsx';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TabSelector } from './components/TabSelector.tsx';
 import { QuestBoard } from './components/QuestBoard.tsx';
@@ -20,9 +21,6 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ textAlign: 'center' }}>
-        <h1>Colorkwest</h1>
-      </Box>
       <TabSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <QuestBoard selectedTab={selectedTab} />
     </ThemeProvider>
