@@ -46,6 +46,7 @@ function App() {
           aria-label="basic tabs example"
           textColor="primary"
           indicatorColor="primary"
+          centered
         >
           <Tab label="All Quests" />
           <Tab label="My Tasks" />
