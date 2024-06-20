@@ -2,24 +2,32 @@ import { Chip } from '@mui/material';
 import { Trait } from '../generated/dto';
 
 interface TraitChipProps {
-  trait: Trait;
+  trait?: Trait;
+  name?: string;
 }
 
-export function TraitChip({ trait }: TraitChipProps) {
-  let traitName = '';
+export function TraitChip({ trait, name }: TraitChipProps) {
+  let chipText = name;
+  let color: 'default' | 'secondary' | 'primary' = 'default';
   switch (trait) {
     case 1:
-      traitName = 'Strength';
+      chipText = 'Strength';
+      color = 'secondary';
       break;
     case 2:
-      traitName = 'Dexterity';
+      chipText = 'Dexterity';
+      color = 'secondary';
       break;
     case 3:
-      traitName = 'Charisma';
+      chipText = 'Charisma';
+      color = 'primary';
       break;
     case 4:
-      traitName = 'Intelligence';
+      chipText = 'Intelligence';
+      color = 'primary';
+      break;
+    case undefined:
       break;
   }
-  return <Chip label={traitName} />;
+  return <Chip color={color} label={chipText} />;
 }
