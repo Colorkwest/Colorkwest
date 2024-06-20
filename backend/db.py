@@ -50,7 +50,7 @@ brawn1 = Quest(
 
 brawn_participant1 = BrawnParticipant(quest=1, user=2)
 
-users = {1: user1, 2: user2}
+users = [user1, user2]
 quests = [brain1, brawn1]
 brain_answers = [brain_answer1]
 brawn_participants = [brawn_participant1]
