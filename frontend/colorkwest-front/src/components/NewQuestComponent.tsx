@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
-import { Quest } from "../generated/dto";
-import { Box, Button } from "@mui/material";
+import { useState } from 'react';
+import { Box, Button } from '@mui/material';
 
 export const NewQuestModalComponent = () => {
   const [isCreate, setIsCreate] = useState<boolean>(false);
 
-  const [inputTitle, setInputTitle] = useState<string>("");
-  const [inputDescription, setInputDescription] = useState<string>("");
-  const [inputExpired, setInputExpired] = useState<string>("");
-  const [inputHardness, setInputHardness] = useState<string>("");
+  const [inputTitle, setInputTitle] = useState<string>('');
+  const [inputDescription, setInputDescription] = useState<string>('');
+  const [inputExpired, setInputExpired] = useState<string>('');
+  const [inputHardness, setInputHardness] = useState<string>('');
   // const [inputRequirement,setInputRequirement]= useState<Array<number>>([])
   const [inputUUID, setInputUUID] = useState<string>('');
   const [inputCategory, setInputCategory] = useState<string>('');
@@ -20,12 +19,29 @@ export const NewQuestModalComponent = () => {
     alert('create');
   };
 
-  const style = isCreate ? { transform: 'rotate(45deg)' } : {}
-
+  const style = isCreate ? { transform: 'rotate(45deg)' } : {};
 
   return (
-    <Box sx={{ position: "absolute", bottom: '24px', display: 'flex', flexDirection: 'column', width: "100%", justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
-      <Box sx={{ display: "flex", opacity: '0%', flexDirection: 'column', animation: isCreate ? 'fadeIn 0.5s forwards' : 'fadeOut 0.5s forwards' }}>
+    <Box
+      sx={{
+        position: 'absolute',
+        bottom: '24px',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '8px',
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          opacity: '0%',
+          flexDirection: 'column',
+          animation: isCreate ? 'fadeIn 0.5s forwards' : 'fadeOut 0.5s forwards',
+        }}
+      >
         <input
           type="text"
           placeholder="please input Title"
@@ -99,23 +115,34 @@ export const NewQuestModalComponent = () => {
           }}
         ></input>
 
-        <button onClick={() => handleCreate(
-          // Title: inputTitle,
-          // Description: inputDescription,
-          // Expired: inputExpired,
-          // Hardness: inputHardness,
-          // // Requirement: inputRequirement,
-          // UUID: inputUUID,
-          // Category: inputCategory,
-          // Award: inputAward,
-          // Limit: inputLimit, // number of get award
-          // Tag: inputTag
-          //
-        )}>Submit</button>
+        <button
+          onClick={
+            () => handleCreate()
+            // Title: inputTitle,
+            // Description: inputDescription,
+            // Expired: inputExpired,
+            // Hardness: inputHardness,
+            // // Requirement: inputRequirement,
+            // UUID: inputUUID,
+            // Category: inputCategory,
+            // Award: inputAward,
+            // Limit: inputLimit, // number of get award
+            // Tag: inputTag
+            //
+          }
+        >
+          Submit
+        </button>
       </Box>
       <Box>
-        <Button sx={{ fontSize: '28px' }} variant="contained" onClick={() => setIsCreate((prev) => !prev)}><Box sx={{ ...style, transition: 'all 0.2s ease-in-out' }}>+</Box></Button>
+        <Button
+          sx={{ fontSize: '28px' }}
+          variant="contained"
+          onClick={() => setIsCreate((prev) => !prev)}
+        >
+          <Box sx={{ ...style, transition: 'all 0.2s ease-in-out' }}>+</Box>
+        </Button>
       </Box>
-    </Box >
-  )
-}
+    </Box>
+  );
+};

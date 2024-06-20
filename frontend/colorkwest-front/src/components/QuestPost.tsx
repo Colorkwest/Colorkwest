@@ -1,25 +1,31 @@
-import { BrainAnswer } from '../generated/dto';
+import { Box, Chip, Typography } from '@mui/material';
+import { BrainAnswer, GetUsersUsersGet200 } from '../generated/dto';
 import { DetailedQuest } from '../generated/dto/detailedQuest';
-import css from './IndexPage.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-interface Props {
+interface QuestPostProps {
   quest: DetailedQuest;
+  users?: GetUsersUsersGet200;
   handleAnswer: (txt: string) => void;
 }
 
-export function QuestionBoxComponent({ quest, handleAnswer }: Props) {
+export function QuestPost({ quest, users, handleAnswer }: QuestPostProps) {
   const [expended, setExpended] = useState<boolean>(false);
   const [inputAnswer, setInputAnswer] = useState<string>('');
 
   return (
-    <div className={css.questbox}>
+    <Box
+      sx={{
+        margin: '50px 15px',
+        background: 'white',
+        padding: '20px',
+        gap: '15px',
+        borderRadius: '10px',
+      }}
+    >
       <div onClick={() => setExpended((x) => !x)}>
-        {/* <p>{quest.Requester?.ID}</p> */}
-        <p>{quest.title}</p>
-        <p>{quest.description}</p>
-        {/* <p>Create: {quest.CreatedAt}</p> */}
-        {/* <p>Expored: {quest.Expired}</p> */}
+        <Typography>{quest.title}</Typography>
+        <Typography>{quest.description}</Typography>
         <div>
           {quest.brain_answers?.map((item: BrainAnswer, index) => (
             <a key={'user_' + index}>{item.author}</a>
@@ -30,7 +36,10 @@ export function QuestionBoxComponent({ quest, handleAnswer }: Props) {
         </p>
         {/* {quest.Tags?.map((tag, tagindex) => {
           return (
-            <div key={"tag_" + tagindex}>{tag}</div>
+            <Box>
+              <Chip label="Chip Filled" />
+              <Chip label="Chip Outlined" variant="outlined" />
+            </Box>
           );
         })} */}
         <p>{quest.status}</p>
@@ -64,6 +73,6 @@ export function QuestionBoxComponent({ quest, handleAnswer }: Props) {
           </ol>
         </div>
       )}
-    </div>
+    </Box>
   );
 }
