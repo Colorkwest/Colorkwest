@@ -37,7 +37,7 @@ brain1 = Quest(
 brain_answer1 = BrainAnswer(quest=1, author=1, text="Protein", accepted=False)
 
 brawn1 = Quest(
-    id=1,
+    id=2,
     type=QuestType.BRAWN,
     author=1,
     title="Help  me lift",
