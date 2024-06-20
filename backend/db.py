@@ -61,3 +61,31 @@ db = {
     Tables.BRAIN_ANSWER: brain_answers,
     Tables.BRAWN_PARTICIPANT: brawn_participants,
 }
+
+
+def get_quest_idx(quest_id):
+    for i, q in enumerate(db[Tables.QUEST]):
+        if q.id == quest_id:
+            break
+    else:
+        return None
+
+    return i
+
+
+def get_brain_answers(quest_id):
+    answers = []
+    for answer in db[Tables.BRAIN_ANSWER]:
+        if answer.quest == quest_id:
+            answers.append(answer)
+
+    return answers
+
+
+def get_brawn_participants(quest_id):
+    participants = []
+    for participant in db[Tables.BRAWN_PARTICIPANT]:
+        if participant.quest == quest_id:
+            participants.append(participant)
+
+    return participants

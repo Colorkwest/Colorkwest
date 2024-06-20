@@ -6,8 +6,9 @@ from pydantic import BaseModel
 
 class Status(Enum):
     OPEN = 1
-    COMPLETED = 2
-    CANCELLED = 3
+    PENDING = 2
+    COMPLETED = 3
+    CANCELLED = 4
 
 
 class QuestType(Enum):
@@ -53,3 +54,21 @@ class Quest(BaseModel):
 class BrawnParticipant(BaseModel):
     quest: int
     user: int
+
+
+class DetailedQuest(BaseModel):
+    id: int
+    type: QuestType
+    author: int
+    title: str
+    description: str
+    status: Status
+    trait: Trait
+    deadline: datetime
+    max_participants: int  # 0: unlimited
+    brain_answers: list[BrainAnswer]
+    brawn_participants: list[BrawnParticipant]
+
+
+class QuestResponse(BaseModel):
+    quests: list[Quest]
