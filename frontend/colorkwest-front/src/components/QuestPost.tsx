@@ -1,22 +1,36 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { GetUsersUsersGet200 } from '../generated/dto';
 import { DetailedQuest } from '../generated/dto/detailedQuest';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { TraitChip } from './TraitChip';
 import { UserAvatar } from './UserAvatar';
 
 interface QuestPostProps {
   quest: DetailedQuest;
   users?: GetUsersUsersGet200;
-  handleAnswer: (txt: string) => void;
+  shrinkPrevious: () => void;
+  setShrinkPrevious: React.Dispatch<React.SetStateAction<() => void>>;
 }
 
-export function QuestPost({ quest, users, handleAnswer }: QuestPostProps) {
-  const [expended, setExpended] = useState<boolean>(false);
+export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: QuestPostProps) {
+  const [expanded, setExpanded] = useState<boolean>(false);
   const [inputAnswer, setInputAnswer] = useState<string>('');
+
+  const handleClick = useCallback(() => {
+    if (expanded) {
+      return;
+    }
+
+    setShrinkPrevious(() => {
+      return () => setExpanded(false);
+    });
+    shrinkPrevious();
+    setExpanded(true);
+  }, [expanded, setShrinkPrevious, setExpanded, shrinkPrevious, setExpanded]);
 
   return (
     <Box
+      onClick={handleClick}
       sx={{
         margin: '50px 15px',
         background: 'white',
@@ -40,8 +54,8 @@ export function QuestPost({ quest, users, handleAnswer }: QuestPostProps) {
         </Box>
         <Stack direction="row" spacing={1}>
           <TraitChip trait={quest.trait} />
-          <TraitChip trait={quest.trait} />
-          <TraitChip trait={quest.trait} />
+          <TraitChip name="Cat" />
+          <TraitChip name="Pet" />
         </Stack>
         <Typography color="text.secondary">{quest.description}</Typography>
         <Box sx={{ marginLeft: 'auto' }}>
@@ -50,6 +64,7 @@ export function QuestPost({ quest, users, handleAnswer }: QuestPostProps) {
           </Typography>
         </Box>
       </Box>
+      {expanded && <> PUT QUEST POST DETAIL COMPONENT HERE</>}
     </Box>
   );
 }

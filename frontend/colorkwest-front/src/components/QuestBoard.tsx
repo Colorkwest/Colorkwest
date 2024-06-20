@@ -4,6 +4,7 @@ import { StatDisplay } from './StatDisplay';
 import { NewQuestModalComponent } from './NewQuestComponent';
 import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
+import { useState } from 'react';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -12,6 +13,10 @@ type QuestBoardProps = {
 export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const { data: quests } = useGetQuestsQuestsGet();
   const { data: users } = useGetUsersUsersGet();
+
+  const [shrinkPrevious, setShrinkPrevious] = useState(() => {
+    return () => {};
+  });
 
   return (
     <Box
@@ -25,7 +30,13 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
     >
       <Masonry columns={3} spacing={2}>
         {(quests || []).map((quest) => (
-          <QuestPost key={quest.id} quest={quest} users={users} handleAnswer={() => {}} />
+          <QuestPost
+            key={quest.id}
+            quest={quest}
+            users={users}
+            shrinkPrevious={shrinkPrevious}
+            setShrinkPrevious={setShrinkPrevious}
+          />
         ))}
       </Masonry>
       <Box width={600} height={600}>

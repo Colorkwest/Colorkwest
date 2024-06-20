@@ -14,10 +14,6 @@ export const NewQuestModalComponent = () => {
   const [inputLimit, setInputLimit] = useState<number>(0);
   const [inputTag, setInputTag] = useState<Array<string>>([]);
 
-  const handleCreate = () => {
-    alert('create');
-  };
-
   const style = isCreate ? { transform: 'rotate(45deg)' } : {};
 
   return (
@@ -114,7 +110,7 @@ export const NewQuestModalComponent = () => {
           }}
         ></input>
 
-        <button onClick={() => handleCreate()}>Submit</button>
+        <button onClick={() => {}}>Submit</button>
       </Box>
       <Box>
         <Button
