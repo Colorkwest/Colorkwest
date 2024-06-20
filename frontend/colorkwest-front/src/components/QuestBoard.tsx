@@ -4,7 +4,7 @@ import { StatDisplay } from './StatDisplay';
 import { NewQuestModalComponent } from './NewQuestComponent';
 import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -17,6 +17,21 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const [shrinkPrevious, setShrinkPrevious] = useState(() => {
     return () => {};
   });
+
+  // Escape key to unfocus quest
+  useEffect(() => {
+    function handleEscapeKey(event: KeyboardEvent) {
+      if (event.code === 'Escape') {
+        shrinkPrevious();
+        setShrinkPrevious(() => {
+          return () => {};
+        });
+      }
+    }
+
+    document.addEventListener('keydown', handleEscapeKey);
+    return () => document.removeEventListener('keydown', handleEscapeKey);
+  }, [shrinkPrevious, setShrinkPrevious]);
 
   return (
     <Box
