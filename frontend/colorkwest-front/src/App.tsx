@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { StatDisplay } from './components/StatDisplay.tsx';
 import { Box, Tab, Tabs } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { TabSelector } from './components/TabSelector.tsx';
 
 function App() {
   const quests = useGetQuestsQuestsGet();
@@ -39,21 +40,7 @@ function App() {
       <Box sx={{ textAlign: 'center' }}>
         <h1>Colorkwest</h1>
       </Box>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs
-          value={selectedTab}
-          onChange={(_, newValue) => setSelectedTab(newValue)}
-          aria-label="basic tabs example"
-          textColor="inherit"
-          indicatorColor="primary"
-          centered
-          sx={{ '& .Mui-selected': { fontWeight: 800 } }}
-        >
-          <Tab disableRipple label="All Quests" />
-          <Tab disableRipple label="My Tasks" />
-          <Tab disableRipple label="My Requests" />
-        </Tabs>
-      </Box>
+      <TabSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       {quests?.data?.map((item) => {
         if (item.type == 1) {
           return (
