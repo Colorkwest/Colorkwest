@@ -116,5 +116,5 @@ async def cancel_quest(quest_id):
 
 
 @app.get("/users")
-async def get_users() -> list[User]:
-    return db[Tables.USER]
+async def get_users() -> dict[int, User]:
+    return {u.id: u for u in db[Tables.USER]}
