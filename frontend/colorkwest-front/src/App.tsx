@@ -44,13 +44,14 @@ function App() {
           value={selectedTab}
           onChange={(_, newValue) => setSelectedTab(newValue)}
           aria-label="basic tabs example"
-          textColor="primary"
+          textColor="inherit"
           indicatorColor="primary"
           centered
+          sx={{ '& .Mui-selected': { fontWeight: 800 } }}
         >
-          <Tab label="All Quests" />
-          <Tab label="My Tasks" />
-          <Tab label="My Requests" />
+          <Tab disableRipple label="All Quests" />
+          <Tab disableRipple label="My Tasks" />
+          <Tab disableRipple label="My Requests" />
         </Tabs>
       </Box>
       {quests?.data?.map((item) => {
