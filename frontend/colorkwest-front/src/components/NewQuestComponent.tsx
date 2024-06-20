@@ -8,7 +8,6 @@ export const NewQuestModalComponent = () => {
   const [inputDescription, setInputDescription] = useState<string>('');
   const [inputExpired, setInputExpired] = useState<string>('');
   const [inputHardness, setInputHardness] = useState<string>('');
-  // const [inputRequirement,setInputRequirement]= useState<Array<number>>([])
   const [inputUUID, setInputUUID] = useState<string>('');
   const [inputCategory, setInputCategory] = useState<string>('');
   const [inputAward, setInputAward] = useState<number>(0);
@@ -115,24 +114,7 @@ export const NewQuestModalComponent = () => {
           }}
         ></input>
 
-        <button
-          onClick={
-            () => handleCreate()
-            // Title: inputTitle,
-            // Description: inputDescription,
-            // Expired: inputExpired,
-            // Hardness: inputHardness,
-            // // Requirement: inputRequirement,
-            // UUID: inputUUID,
-            // Category: inputCategory,
-            // Award: inputAward,
-            // Limit: inputLimit, // number of get award
-            // Tag: inputTag
-            //
-          }
-        >
-          Submit
-        </button>
+        <button onClick={() => handleCreate()}>Submit</button>
       </Box>
       <Box>
         <Button

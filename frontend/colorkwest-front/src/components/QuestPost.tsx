@@ -1,7 +1,8 @@
-import { Box, Chip, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import { BrainAnswer, GetUsersUsersGet200 } from '../generated/dto';
 import { DetailedQuest } from '../generated/dto/detailedQuest';
 import { useState } from 'react';
+import { RandomAvatar } from './RandomAvatar';
 
 interface QuestPostProps {
   quest: DetailedQuest;
@@ -23,6 +24,7 @@ export function QuestPost({ quest, users, handleAnswer }: QuestPostProps) {
         borderRadius: '10px',
       }}
     >
+      <RandomAvatar />
       <div onClick={() => setExpended((x) => !x)}>
         <Typography>{quest.title}</Typography>
         <Typography>{quest.description}</Typography>
