@@ -1,5 +1,5 @@
 // import css from './IndexPage.module.css';
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 // interface Quest {
 //   Title: string;
@@ -16,16 +16,16 @@ import { useState, useEffect } from "react";
 // }
 
 interface newQuestion {
-  Title: string,
-  Description: string,
-  Expired: string,
-  Hardness: string,
+  Title: string;
+  Description: string;
+  Expired: string;
+  Hardness: string;
   // Requirement: Array<string>,
-  UUID: string,
-  Category: string,
-  Award: number,
-  Limit: number, // number of get award
-  Tag: Array<string>
+  UUID: string;
+  Category: string;
+  Award: number;
+  Limit: number; // number of get award
+  Tag: Array<string>;
 }
 
 interface Props {
@@ -34,47 +34,111 @@ interface Props {
   // handleAccept: () => void;
 }
 
-
-
-
-
 export function NewQuestModalComponent({ handleSubmit }: Props) {
-  const [inputTitle, setInputTitle] = useState<string>("");
-  const [inputDescription, setInputDescription] = useState<string>("");
-  const [inputExpired, setInputExpired] = useState<string>("");
-  const [inputHardness, setInputHardness] = useState<string>("");
+  const [inputTitle, setInputTitle] = useState<string>('');
+  const [inputDescription, setInputDescription] = useState<string>('');
+  const [inputExpired, setInputExpired] = useState<string>('');
+  const [inputHardness, setInputHardness] = useState<string>('');
   // const [inputRequirement,setInputRequirement]= useState<Array<number>>([])
-  const [inputUUID, setInputUUID] = useState<string>("");
-  const [inputCategory, setInputCategory] = useState<string>("");
+  const [inputUUID, setInputUUID] = useState<string>('');
+  const [inputCategory, setInputCategory] = useState<string>('');
   const [inputAward, setInputAward] = useState<number>(0);
   const [inputLimit, setInputLimit] = useState<number>(0);
   const [inputTag, setInputTag] = useState<Array<string>>([]);
 
   return (
     <div>
-      <input type="text" placeholder='please input Title' value={inputTitle} onChange={(e) => { setInputTitle(e.target.value) }}></input>
-      <input type="text" placeholder='please intput Description' value={inputDescription} onChange={(e) => { setInputDescription(e.target.value) }}></input>
-      <input type="text" placeholder='please input Expired' value={inputExpired} onChange={(e) => { setInputExpired(e.target.value) }}></input>
-      <input type="text" placeholder='please input Hardness' value={inputHardness} onChange={(e) => { setInputHardness(e.target.value) }}></input>
-      <input type="text" placeholder='please input UUID' value={inputUUID} onChange={(e) => { setInputUUID(e.target.value) }}></input>
-      <input type="text" placeholder='please input Category' value={inputCategory} onChange={(e) => { setInputCategory(e.target.value) }}></input>
-      <input type="text" placeholder='please input Award' value={inputAward} onChange={(e) => { setInputAward(Number(e.target.value)) }}></input>
-      <input type="number" placeholder='please input Limit' value={inputTitle} onChange={(e) => { setInputLimit(Number(e.target.value)) }}></input>
-      <input type="text" placeholder='please input Tag' value={inputTitle} onChange={(e) => { setInputTag(Array<string>(e.target.value)) }}></input>
+      <input
+        type="text"
+        placeholder="please input Title"
+        value={inputTitle}
+        onChange={(e) => {
+          setInputTitle(e.target.value);
+        }}
+      ></input>
+      <input
+        type="text"
+        placeholder="please intput Description"
+        value={inputDescription}
+        onChange={(e) => {
+          setInputDescription(e.target.value);
+        }}
+      ></input>
+      <input
+        type="text"
+        placeholder="please input Expired"
+        value={inputExpired}
+        onChange={(e) => {
+          setInputExpired(e.target.value);
+        }}
+      ></input>
+      <input
+        type="text"
+        placeholder="please input Hardness"
+        value={inputHardness}
+        onChange={(e) => {
+          setInputHardness(e.target.value);
+        }}
+      ></input>
+      <input
+        type="text"
+        placeholder="please input UUID"
+        value={inputUUID}
+        onChange={(e) => {
+          setInputUUID(e.target.value);
+        }}
+      ></input>
+      <input
+        type="text"
+        placeholder="please input Category"
+        value={inputCategory}
+        onChange={(e) => {
+          setInputCategory(e.target.value);
+        }}
+      ></input>
+      <input
+        type="text"
+        placeholder="please input Award"
+        value={inputAward}
+        onChange={(e) => {
+          setInputAward(Number(e.target.value));
+        }}
+      ></input>
+      <input
+        type="number"
+        placeholder="please input Limit"
+        value={inputTitle}
+        onChange={(e) => {
+          setInputLimit(Number(e.target.value));
+        }}
+      ></input>
+      <input
+        type="text"
+        placeholder="please input Tag"
+        value={inputTitle}
+        onChange={(e) => {
+          setInputTag(Array<string>(e.target.value));
+        }}
+      ></input>
 
-      <button onClick={() => handleSubmit({
-        Title: inputTitle,
-        Description: inputDescription,
-        Expired: inputExpired,
-        Hardness: inputHardness,
-        // Requirement: inputRequirement,
-        UUID: inputUUID,
-        Category: inputCategory,
-        Award: inputAward,
-        Limit: inputLimit, // number of get award
-        Tag: inputTag
-
-      })}>Submit</button>
+      <button
+        onClick={() =>
+          handleSubmit({
+            Title: inputTitle,
+            Description: inputDescription,
+            Expired: inputExpired,
+            Hardness: inputHardness,
+            // Requirement: inputRequirement,
+            UUID: inputUUID,
+            Category: inputCategory,
+            Award: inputAward,
+            Limit: inputLimit, // number of get award
+            Tag: inputTag,
+          })
+        }
+      >
+        Submit
+      </button>
     </div>
   );
 

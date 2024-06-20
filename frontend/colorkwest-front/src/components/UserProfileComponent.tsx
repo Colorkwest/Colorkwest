@@ -1,5 +1,5 @@
 import css from './IndexPage.module.css';
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 interface UserInfo {
   //   ID: string,
@@ -27,7 +27,6 @@ interface Props {
 }
 
 export function UserProfileComponent({ user }: Props) {
-
   return (
     <div className={css.questbox}>
       <div>{user.name}</div>
@@ -37,6 +36,6 @@ export function UserProfileComponent({ user }: Props) {
       <div>{user.dex}</div>
       <div>{user.cha}</div>
       <div>{user.int}</div>
-    </div >
+    </div>
   );
 }
