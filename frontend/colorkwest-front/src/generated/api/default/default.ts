@@ -16,9 +16,9 @@ import type {
 } from 'swr/mutation'
 import type {
   DetailedQuest,
+  GetUsersUsersGet200,
   HTTPValidationError,
-  Quest,
-  User
+  Quest
 } from '../../dto'
 import { mutate } from '../../../mutator/mutate';
 
@@ -330,7 +330,7 @@ export const useCancelQuestQuestsQuestIdCancelPost = <TError = HTTPValidationErr
 export const getUsersUsersGet = (
     
  options?: SecondParameter<typeof mutate>) => {
-      return mutate<User[]>(
+      return mutate<GetUsersUsersGet200>(
       {url: `/users`, method: 'GET'
     },
       options);

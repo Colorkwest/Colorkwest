@@ -8,6 +8,7 @@
 export * from './brainAnswer';
 export * from './brawnParticipant';
 export * from './detailedQuest';
+export * from './getUsersUsersGet200';
 export * from './hTTPValidationError';
 export * from './quest';
 export * from './questType';
