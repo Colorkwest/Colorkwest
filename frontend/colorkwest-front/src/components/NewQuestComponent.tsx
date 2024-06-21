@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
-import { createQuestQuestsPost } from "../generated/api/default/default";
+import { createQuestQuestsPost, useCreateQuestQuestsPost } from "../generated/api/default/default";
 import { Done } from "@mui/icons-material";
 
 const typeToTrait = (type: 'cha' | 'int' | 'str' | 'dex') => {
@@ -43,6 +43,8 @@ export const NewQuestModalComponent = ({
   const [isCreate, setIsCreate] = useState<boolean>();
   const [selectedType, setSelectedType] = useState<'cha' | 'int' | 'str' | 'dex'>('cha');
 
+  const { trigger } = useCreateQuestQuestsPost();
+
   const [inputTitle, setInputTitle] = useState<string>('');
   const [inputDescription, setInputDescription] = useState<string>('');
   const [inputDeadline, setInputDeadline] = useState<Dayjs | null>(dayjs());
@@ -64,7 +66,7 @@ export const NewQuestModalComponent = ({
 
   const handleCreate = () => {
     setStatus("loading");
-    createQuestQuestsPost({
+    trigger({
       author: 1,
       type: typeToVal(selectedType),
       trait: typeToTrait(selectedType),

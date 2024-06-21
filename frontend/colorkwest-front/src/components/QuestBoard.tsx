@@ -113,14 +113,12 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             flexDirection: 'column',
             height: 'calc(100% - 48px)',
             position: 'relative',
+            overflowY: 'auto',
           }}
         >
           <Masonry columns={3} spacing={2} sequential>
             {questDisplay}
           </Masonry>
-          <Box width={600} height={600}>
-            <StatDisplay str={10} cha={10} int={20} dex={40} />
-          </Box>
         </Box>
         <NewQuestModalComponent onCreate={refetchQuestData}/>
       </QuestContext.Provider>
