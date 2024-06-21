@@ -25,6 +25,21 @@ export function QuestPost({
   const [expanded, setExpanded] = useState<boolean>(false);
   const [inputAnswer, setInputAnswer] = useState<string>('');
 
+  const randomTags = [
+    <TraitChip name="Cat" />,
+    <TraitChip name="Pet" />,
+    <TraitChip name="Steak" />,
+    <TraitChip name="Haru" />,
+    <TraitChip name="Colorkrew" />,
+    <TraitChip name="Work" />,
+    <TraitChip name="Fun" />,
+    <TraitChip name="Ice Cream" />,
+    <TraitChip name="Coding" />,
+    <TraitChip name="Dance" />,
+    <TraitChip name="Karaoke" />,
+    <TraitChip name="Joyful" />,
+  ];
+
   const handleClick = useCallback(() => {
     if (expanded) {
       return;
@@ -94,8 +109,8 @@ export function QuestPost({
         </Box>
         <Stack direction="row" spacing={1}>
           <TraitChip trait={quest.trait} />
-          <TraitChip name="Cat" />
-          <TraitChip name="Pet" />
+          {randomTags[Math.floor(Math.random() * randomTags.length)]}
+          {randomTags[Math.floor(Math.random() * randomTags.length)]}
         </Stack>
         <Box sx={{ marginLeft: 'auto' }}>
           <Typography
