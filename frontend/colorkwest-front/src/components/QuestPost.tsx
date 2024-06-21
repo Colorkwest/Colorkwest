@@ -37,6 +37,15 @@ export function QuestPost({
     <TraitChip name="Joyful" />,
   ];
 
+  const tags = useMemo(() => {
+    return (
+      <>
+        {randomTags[Math.floor(Math.random() * randomTags.length)]}
+        {randomTags[Math.floor(Math.random() * randomTags.length)]}
+      </>
+    );
+  }, []);
+
   const handleClick = useCallback(() => {
     if (expanded) {
       return;
@@ -106,8 +115,7 @@ export function QuestPost({
         </Box>
         <Stack direction="row" spacing={1}>
           <TraitChip trait={quest.trait} />
-          {randomTags[Math.floor(Math.random() * randomTags.length)]}
-          {randomTags[Math.floor(Math.random() * randomTags.length)]}
+          {tags}
         </Stack>
         <Box sx={{ marginLeft: 'auto' }}>
           <Typography
