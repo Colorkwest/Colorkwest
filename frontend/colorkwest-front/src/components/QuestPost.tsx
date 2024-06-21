@@ -43,22 +43,24 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: Q
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
           <UserAvatar user_id={quest.author} />
-          <Typography
-            sx={{
-              fontSize: '18px',
-              fontWeight: 800,
-              alignContent: 'center',
-            }}
-          >
-            {quest.title}
-          </Typography>
+          <Box>
+            <Typography
+              sx={{
+                fontSize: '18px',
+                fontWeight: 800,
+                alignContent: 'center',
+              }}
+            >
+              {quest.title}
+            </Typography>
+            <Typography color="text.secondary">{quest.description}</Typography>
+          </Box>
         </Box>
         <Stack direction="row" spacing={1}>
           <TraitChip trait={quest.trait} />
           <TraitChip name="Cat" />
           <TraitChip name="Pet" />
         </Stack>
-        <Typography color="text.secondary">{quest.description}</Typography>
         <Box sx={{ marginLeft: 'auto' }}>
           <Typography
             sx={{

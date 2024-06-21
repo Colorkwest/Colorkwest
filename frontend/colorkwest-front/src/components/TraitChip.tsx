@@ -7,27 +7,42 @@ interface TraitChipProps {
 }
 
 export function TraitChip({ trait, name }: TraitChipProps) {
-  let chipText = name;
-  let color: 'default' | 'secondary' | 'primary' = 'default';
+  let chipText = name?.toUpperCase();
+  let bgColor;
+  let textColor;
   switch (trait) {
     case 1:
-      chipText = 'Strength';
-      color = 'primary';
+      chipText = 'STRENGTH';
+      bgColor = 'rgba(0, 111, 253, 0.1)';
+      textColor = '#006FFD';
       break;
     case 2:
-      chipText = 'Dexterity';
-      color = 'primary';
+      chipText = 'DEXTERITY';
+      bgColor = 'rgba(0, 111, 253, 0.1)';
+      textColor = '#006FFD';
       break;
     case 3:
-      chipText = 'Charisma';
-      color = 'secondary';
+      chipText = 'CHARISMA';
+      bgColor = 'rgba(236, 144, 7, 0.1)';
+      textColor = '#EC9007';
       break;
     case 4:
-      chipText = 'Intelligence';
-      color = 'secondary';
+      chipText = 'INTELLIGENCE';
+      bgColor = 'rgba(236, 144, 7, 0.1)';
+      textColor = '#EC9007';
       break;
     case undefined:
       break;
   }
-  return <Chip color={color} label={chipText} />;
+  return (
+    <Chip
+      sx={{
+        backgroundColor: bgColor,
+        color: textColor,
+        fontSize: '10px',
+        fontWeight: 600,
+      }}
+      label={chipText}
+    />
+  );
 }
