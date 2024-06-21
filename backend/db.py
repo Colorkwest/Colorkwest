@@ -60,9 +60,16 @@ brain2 = Quest(
 brain_answer1 = BrainAnswer(
     quest=1,
     author=1,
-    text="Protein",
+    text="Brownies",
     accepted=True,
     created_at=datetime.today() - timedelta(days=2),
+)
+brain_answer2 = BrainAnswer(
+    quest=1,
+    author=5,
+    text="Protein",
+    accepted=False,
+    created_at=datetime.today() - timedelta(days=1),
 )
 
 brawn1 = Quest(
@@ -105,7 +112,7 @@ brawn_participant1 = BrawnParticipant(quest=1, user=2)
 
 users = [user1, user2]
 quests = [brain1, brawn1, brawn2, brain2, brawn3]
-brain_answers = [brain_answer1]
+brain_answers = [brain_answer1, brain_answer2]
 brawn_participants = [brawn_participant1]
 
 db = {
