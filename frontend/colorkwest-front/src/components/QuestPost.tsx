@@ -49,7 +49,10 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious, ava
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <Box onClick={() => avatarClick(quest.author)}>
+          <Box onClick={(e: Event) => {
+            e.stopPropagation();
+            avatarClick(quest.author)
+          }}>
             <UserAvatar user_id={quest.author} />
           </Box>
           <Box>

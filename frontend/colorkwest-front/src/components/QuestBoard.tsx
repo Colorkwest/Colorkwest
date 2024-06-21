@@ -5,6 +5,7 @@ import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
 import { useEffect, useState } from 'react';
 import { DetailedQuest } from '../generated/dto';
+import { NewQuestModalComponent } from './NewQuestComponent';
 import { UserAvatar } from './UserAvatar';
 
 type QuestBoardProps = {
