@@ -59,7 +59,6 @@ async def get_quests() -> list[DetailedQuest]:
 
         if q.type == QuestType.BRAIN:
             brain_answers = get_brain_answers(q.id)
-            print("crazy")
             print(brain_answers)
         elif q.type == QuestType.BRAWN:
             brawn_participants = get_brawn_participants(q.id)
@@ -145,7 +144,7 @@ async def get_users() -> dict[int, User]:
 async def toggle_favorite(quest_id, json: dict):
     ans = None
     for idx, answer in enumerate(db[Tables.BRAIN_ANSWER]):
-        if answer.quest == quest_id and answer.author == json["author"]:
+        if answer.quest == int(quest_id) and answer.author == int(json["author"]):
             ans = answer
             break
     else:
