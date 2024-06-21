@@ -8,6 +8,7 @@ import { DetailedQuest } from '../generated/dto';
 import { UserAvatar } from './UserAvatar';
 import { MY_USER_ID } from '../App';
 import { QuestContext } from '../useQuestContext';
+import { NewQuestModalComponent } from './NewQuestComponent';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -110,6 +111,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             display: 'flex',
             flexDirection: 'column',
             height: 'calc(100% - 183px)',
+            overflowY: 'auto',
             position: 'relative',
           }}
         >
@@ -128,6 +130,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             ))}
           </Masonry>
         </Box>
+        <NewQuestModalComponent onCreate={refetchQuestData}/>
       </QuestContext.Provider>
     </>
   );

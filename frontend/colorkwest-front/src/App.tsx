@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TabSelector } from './components/TabSelector.tsx';
 import { QuestBoard } from './components/QuestBoard.tsx';
-import { Box, Typography } from '@mui/material';
-import { NewQuestModalComponent } from './components/NewQuestComponent.tsx';
+import { Typography } from '@mui/material';
 import { LeaderBoardComponent } from './components/LeaderBoardComponent.tsx';
 
 export const MY_USER_ID = 2;
@@ -57,11 +56,8 @@ function App() {
         Colorkwest
       </Typography>
       <TabSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      <Box>
-        <QuestBoard selectedTab={selectedTab} />
-      </Box>
+      <QuestBoard selectedTab={selectedTab} />
       {leaderOn && <LeaderBoardComponent handleClose={() => setLeaderOn(false)} />}
-      <NewQuestModalComponent />
     </ThemeProvider>
   );
 }
