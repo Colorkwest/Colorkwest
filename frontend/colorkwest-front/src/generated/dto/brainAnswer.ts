@@ -8,6 +8,7 @@
 export interface BrainAnswer {
   accepted: boolean;
   author: number;
+  created_at: string;
   quest: number;
   text: string;
 }

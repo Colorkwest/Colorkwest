@@ -7,6 +7,7 @@ import { BrainAnswer } from '../generated/dto/brainAnswer';
 import { MY_USER_ID } from '../App';
 import { useQuestContext } from '../useQuestContext';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import dayjs from 'dayjs';
 
 interface BrainDetailProps {
   quest: DetailedQuest;
@@ -23,6 +24,7 @@ export function BrainDetail({ quest }: BrainDetailProps) {
       author: MY_USER_ID,
       quest: quest.id,
       text: answerText,
+      created_at: dayjs().toString(),
     };
     submit(answer);
     refetchQuests();
