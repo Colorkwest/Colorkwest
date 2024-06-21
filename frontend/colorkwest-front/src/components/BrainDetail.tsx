@@ -143,28 +143,24 @@ export function BrainDetail({ quest }: BrainDetailProps) {
           padding: '24px 0px',
         }}
       >
-        {!isAdmin && (
-          <>
-            <Typography color="text.secondary">
-              <AddIcon />
-            </Typography>
-            <TextField
-              label="Type your answer"
-              size="small"
-              fullWidth
-              value={answerText}
-              onChange={(e) => {
-                setAnswerText(e.target.value);
-              }}
-              color={'secondary'}
-              InputProps={{
-                style: {
-                  borderRadius: '71px',
-                },
-              }}
-            />
-          </>
-        )}
+        <Typography color="text.secondary">
+          <AddIcon />
+        </Typography>
+        <TextField
+          label="Type your answer"
+          size="small"
+          fullWidth
+          value={answerText}
+          onChange={(e) => {
+            setAnswerText(e.target.value);
+          }}
+          color={'secondary'}
+          InputProps={{
+            style: {
+              borderRadius: '71px',
+            },
+          }}
+        />
       </Box>
       <Box>{answerRows}</Box>
     </Box>
