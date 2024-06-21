@@ -52,7 +52,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
             right: 0,
             textAlign: 'center',
             backgroundColor: 'rgba(1,1,1,0.2)',
-            zIndex: 998
+            zIndex: 998,
         }}>
             <Box onClick={(e) => e.stopPropagation()} sx={{
                 position: 'relative',
@@ -63,6 +63,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                 margin: 'auto',
                 backgroundColor: 'white',
                 textAlign: 'center',
+                paddingTop: '24px',
             }}>
                 <Typography
                     sx={{
@@ -124,22 +125,23 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                         <Box sx={{
                             // width: "379px",
                             display: "flex",
-                            paddingLeft: "20px",
                             flexDirection: 'row',
+                            paddingLeft: '5px',
+                            gap: '10px',
                             justifyContent: 'center'
                         }}>
                             <Box sx={{
-                                marginTop: "160px",
+                                marginTop: "180px",
                             }}>
                                 <BestWarrior type={4} user={bestAll?.[1]} />
                             </Box>
                             <Box sx={{
-                                marginTop: "120px",
+                                marginTop: "160px",
                             }}>
                                 <BestWarrior type={4} user={bestAll?.[0]} />
                             </Box>
                             <Box sx={{
-                                marginTop: "180px",
+                                marginTop: "190px",
                             }}>
                                 <BestWarrior type={4} user={bestAll?.[2]} />
                             </Box>

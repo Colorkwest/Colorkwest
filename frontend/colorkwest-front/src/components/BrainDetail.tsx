@@ -134,7 +134,7 @@ export function BrainDetail({ quest }: BrainDetailProps) {
           alignItems: 'center',
           position: 'sticky',
           top: 0,
-          zIndex: 999,
+          zIndex: 99,
           backgroundColor: 'white',
           padding: '24px 0px',
         }}
