@@ -33,6 +33,10 @@ function App() {
         main: '#000000',
         contrastText: '#FFFFFF',
       },
+      warning: {
+        main: '#ECECEC',
+        contrastText: '#000000',
+      },
     },
   });
 
