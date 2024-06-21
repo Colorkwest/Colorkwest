@@ -28,7 +28,7 @@ user6 = User(id=6, name="Keiji", str=5, dex=3, cha=42, int=4)
 user7 = User(id=7, name="Sonika", str=9, dex=2, cha=1, int=4)
 user8 = User(id=8, name="Hugo", str=5, dex=3, cha=42, int=4)
 user9 = User(id=9, name="Bryan", str=9, dex=2, cha=1, int=4)
-user10 = User(id=10, name="Keiko", str=5, dex=3, cha=42, int=4)
+user10 = User(id=10, name="Kanko", str=5, dex=3, cha=42, int=4)
 user11 = User(id=11, name="Kohei", str=9, dex=2, cha=1, int=4)
 
 brain1 = Quest(
