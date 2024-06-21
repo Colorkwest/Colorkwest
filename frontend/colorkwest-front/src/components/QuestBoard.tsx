@@ -8,7 +8,6 @@ import { DetailedQuest } from '../generated/dto';
 import { UserAvatar } from './UserAvatar';
 import { MY_USER_ID } from '../App';
 import { QuestContext } from '../useQuestContext';
-import { NewQuestModalComponent } from './NewQuestComponent';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -42,7 +41,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   }, [questData, selectedTab]);
 
   const [shrinkPrevious, setShrinkPrevious] = useState(() => {
-    return () => {};
+    return () => { };
   });
 
   // Escape key to unfocus quest
@@ -51,7 +50,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
       if (event.code === 'Escape') {
         shrinkPrevious();
         setShrinkPrevious(() => {
-          return () => {};
+          return () => { };
         });
       }
     }
@@ -112,14 +111,23 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             flexDirection: 'column',
             height: 'calc(100% - 183px)',
             position: 'relative',
-            overflowY: 'auto',
           }}
         >
           <Masonry columns={3} spacing={2} sequential>
-            {questDisplay}
+            {filteredQuests.map((quest) => (
+              <QuestPost
+                avatarClick={() => {
+                  setSelectedUserID(quest.author);
+                }}
+                key={quest.id}
+                quest={quest}
+                users={users}
+                shrinkPrevious={shrinkPrevious}
+                setShrinkPrevious={setShrinkPrevious}
+              />
+            ))}
           </Masonry>
         </Box>
-        <NewQuestModalComponent onCreate={refetchQuestData}/>
       </QuestContext.Provider>
     </>
   );
