@@ -4,7 +4,7 @@ interface UserAvatarProps {
 }
 
 export function UserAvatar({ user_id }: UserAvatarProps) {
-  const num_avatars = 5;
+  const num_avatars = 11;
   if (user_id < 1 || user_id > num_avatars) {
     console.log(`missing avatar for user: ${user_id}`);
     user_id = user_id % num_avatars;
