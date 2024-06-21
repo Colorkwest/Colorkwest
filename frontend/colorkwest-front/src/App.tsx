@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { TabSelector } from './components/TabSelector.tsx';
-import { QuestBoard } from './components/QuestBoard.tsx';
-import { Typography } from '@mui/material';
+import { useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { TabSelector } from "./components/TabSelector.tsx";
+import { QuestBoard } from "./components/QuestBoard.tsx";
+import { Box, Typography } from "@mui/material";
+import { NewQuestModalComponent } from "./components/NewQuestComponent.tsx";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -10,14 +11,27 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#006FFD',
+        main: "#006FFD",
       },
       secondary: {
-        main: '#EC9007',
+        main: "#EC9007",
       },
       text: {
-        secondary: '#9A9A9A',
+        secondary: "#9A9A9A",
       },
+      success: {
+        main: "#EC9007",
+        contrastText: "#FFFFFF",
+      },
+      error: {
+        main: "#006FFD",
+        contrastText: "#FFFFFF",
+      },
+      info: {
+        main: '#000000',
+        contrastText: "#FFFFFF",
+      }
+
     },
   });
 
@@ -25,16 +39,19 @@ function App() {
     <ThemeProvider theme={theme}>
       <Typography
         sx={{
-          fontSize: '26px',
+          fontSize: "26px",
           fontWeight: 800,
-          textAlign: 'center',
+          textAlign: "center",
           paddingTop: 4,
         }}
       >
         Colorkwest
       </Typography>
       <TabSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      <QuestBoard selectedTab={selectedTab} />
+      <Box>
+        <QuestBoard selectedTab={selectedTab} />
+      </Box>
+      <NewQuestModalComponent />
     </ThemeProvider>
   );
 }

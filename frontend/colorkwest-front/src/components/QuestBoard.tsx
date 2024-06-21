@@ -1,7 +1,6 @@
 import { useGetQuestsQuestsGet, useGetUsersUsersGet } from '../generated/api/default/default';
 import { Box } from '@mui/material';
 import { StatDisplay } from './StatDisplay';
-import { NewQuestModalComponent } from './NewQuestComponent';
 import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
 import { useEffect, useState } from 'react';
@@ -83,7 +82,6 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
       <Box width={600} height={600}>
         <StatDisplay str={10} cha={10} int={20} dex={40} />
       </Box>
-      <NewQuestModalComponent />
     </Box>
   );
 }
