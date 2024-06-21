@@ -16,6 +16,7 @@ import type {
 } from 'swr/mutation'
 import type {
   BrainAnswer,
+  BrawnParticipant,
   CreateQuest,
   DetailedQuest,
   GetUsersUsersGet200,
@@ -235,6 +236,52 @@ export const useAnswerBrainQuestsQuestIdAnswerPost = <TError = HTTPValidationErr
 
   const swrKey = swrOptions?.swrKey ?? getAnswerBrainQuestsQuestIdAnswerPostMutationKey(questId);
   const swrFn = getAnswerBrainQuestsQuestIdAnswerPostMutationFetcher(questId,requestOptions);
+
+  const query = useSWRMutation(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+/**
+ * @summary Participiate Brawn
+ */
+export const participiateBrawnQuestsQuestIdParticipatePost = (
+    questId: unknown,
+    brawnParticipant: BrawnParticipant,
+ options?: SecondParameter<typeof mutate>) => {
+      return mutate<unknown>(
+      {url: `/quests/${questId}/participate`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: brawnParticipant
+    },
+      options);
+    }
+  
+
+
+export const getParticipiateBrawnQuestsQuestIdParticipatePostMutationFetcher = (questId: unknown, options?: SecondParameter<typeof mutate>) => {
+  return (_: string, { arg }: { arg: BrawnParticipant }): Promise<unknown> => {
+    return participiateBrawnQuestsQuestIdParticipatePost(questId, arg, options);
+  }
+}
+export const getParticipiateBrawnQuestsQuestIdParticipatePostMutationKey = (questId: unknown,) => `/quests/${questId}/participate` as const;
+
+export type ParticipiateBrawnQuestsQuestIdParticipatePostMutationResult = NonNullable<Awaited<ReturnType<typeof participiateBrawnQuestsQuestIdParticipatePost>>>
+export type ParticipiateBrawnQuestsQuestIdParticipatePostMutationError = HTTPValidationError
+
+/**
+ * @summary Participiate Brawn
+ */
+export const useParticipiateBrawnQuestsQuestIdParticipatePost = <TError = HTTPValidationError>(
+  questId: unknown, options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof participiateBrawnQuestsQuestIdParticipatePost>>, TError, string, BrawnParticipant, Awaited<ReturnType<typeof participiateBrawnQuestsQuestIdParticipatePost>>> & { swrKey?: string }, request?: SecondParameter<typeof mutate> }
+) => {
+
+  const {swr: swrOptions, request: requestOptions} = options ?? {}
+
+  const swrKey = swrOptions?.swrKey ?? getParticipiateBrawnQuestsQuestIdParticipatePostMutationKey(questId);
+  const swrFn = getParticipiateBrawnQuestsQuestIdParticipatePostMutationFetcher(questId,requestOptions);
 
   const query = useSWRMutation(swrKey, swrFn, swrOptions)
 

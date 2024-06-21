@@ -17,8 +17,8 @@ export function TabSelector({ selectedTab, setSelectedTab }: TabSelectorProps) {
       sx={{ '& .Mui-selected': { fontWeight: 800 } }}
     >
       <Tab disableRipple label="All Quests" />
-      <Tab disableRipple label="My Tasks" />
-      <Tab disableRipple label="My Requests" />
+      <Tab disableRipple label="My Quests" />
+      <Tab disableRipple label="Posted By Me" />
     </Tabs>
   );
 }
