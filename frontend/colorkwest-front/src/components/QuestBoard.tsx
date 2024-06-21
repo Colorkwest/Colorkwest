@@ -5,7 +5,6 @@ import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
 import { useEffect, useState } from 'react';
 import { DetailedQuest } from '../generated/dto';
-import { NewQuestModalComponent } from './NewQuestComponent';
 import { UserAvatar } from './UserAvatar';
 
 type QuestBoardProps = {
@@ -101,13 +100,13 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             top: 0,
             left: 0,
             right: 0,
-            bottom: 0
+            bottom: 0,
+            zIndex: 999
           }}
         >
           <ProfileComponent userID={selectedUserID} />
         </Box>
       }
-      <NewQuestModalComponent />
     </Box >
   );
 }
