@@ -318,7 +318,7 @@ export const NewQuestModalComponent = ({
             </>
           )}
         </Box>
-        <Box>
+        <Box sx={{display: 'flex', gap: '12px'}}>
           <Button
             sx={{
               fontSize: "32px",

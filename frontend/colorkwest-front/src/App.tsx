@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TabSelector } from './components/TabSelector.tsx';
 import { QuestBoard } from './components/QuestBoard.tsx';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
-export const MY_USER_ID = 2;
+export const MY_USER_ID = 1;
 
 function App() {
   const [selectedTab, setSelectedTab] = useState(0);
