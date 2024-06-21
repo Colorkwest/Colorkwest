@@ -108,7 +108,12 @@ brawn3 = Quest(
     deadline=datetime.today() + timedelta(days=4),
 )
 
-brawn_participant1 = BrawnParticipant(quest=1, user=2)
+brawn_participant1 = BrawnParticipant(
+    quest=2,
+    user=2,
+    created_at=datetime.today() - timedelta(days=2),
+)
+
 
 users = [user1, user2]
 quests = [brain1, brawn1, brawn2, brain2, brawn3]

@@ -66,6 +66,7 @@ class CreateQuest(BaseModel):
 class BrawnParticipant(BaseModel):
     quest: int
     user: int
+    created_at: datetime
 
 
 class DetailedQuest(BaseModel):
