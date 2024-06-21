@@ -300,6 +300,7 @@ export const NewQuestModalComponent = () => {
                 alignItems: 'center',
                 marginBottom: '4px',
                 transition: 'all 0.2s ease-in-out',
+                transformOrigin: 'center',
               }}
             >
               +

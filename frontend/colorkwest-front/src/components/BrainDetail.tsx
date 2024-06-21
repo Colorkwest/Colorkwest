@@ -6,6 +6,7 @@ import { useAnswerBrainQuestsQuestIdAnswerPost } from '../generated/api/default/
 import { BrainAnswer } from '../generated/dto/brainAnswer';
 import { MY_USER_ID } from '../App';
 import { useQuestContext } from '../useQuestContext';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 interface BrainDetailProps {
   quest: DetailedQuest;
@@ -38,7 +39,54 @@ export function BrainDetail({ quest }: BrainDetailProps) {
   }, [submitAnswer]);
 
   const answerRows = useMemo(() => {
-    return quest.brain_answers.map((answer, idx) => <Box key={idx}>{answer.text}</Box>);
+    const n = quest.brain_answers.length;
+    console.log(n);
+    return (
+      <>
+        <Typography
+          sx={{
+            fontSize: '16px',
+            fontWeight: 600,
+            padding: 1,
+          }}
+        >
+          {n.toString() + (n == 1 ? ' Answer' : ' Answers')}
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+          }}
+        >
+          {quest.brain_answers.map((answer, idx) => (
+            <Box sx={{ display: 'flex' }}>
+              <Box
+                sx={{
+                  padding: 1,
+                  borderRadius: '10px',
+                  border: '1px solid var(--Border, rgba(214, 214, 214, 1))',
+                  key: idx,
+                  flexGrow: 1,
+                }}
+              >
+                {answer.text}
+              </Box>
+              <Box
+                sx={{
+                  paddingX: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <ThumbUpIcon color="secondary" />
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      </>
+    );
   }, [quest]);
 
   return (
