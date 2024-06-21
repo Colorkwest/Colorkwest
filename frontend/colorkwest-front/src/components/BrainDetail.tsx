@@ -1,14 +1,14 @@
-import { Box, TextField, Typography } from "@mui/material";
-import { DetailedQuest } from "../generated/dto";
-import AddIcon from "@mui/icons-material/Add";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useAnswerBrainQuestsQuestIdAnswerPost } from "../generated/api/default/default";
-import { BrainAnswer } from "../generated/dto/brainAnswer";
-import { MY_USER_ID } from "../App";
-import { useQuestContext } from "../useQuestContext";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import dayjs from "dayjs";
-import { UserAvatar } from "./UserAvatar";
+import { Box, TextField, Typography } from '@mui/material';
+import { DetailedQuest } from '../generated/dto';
+import AddIcon from '@mui/icons-material/Add';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useAnswerBrainQuestsQuestIdAnswerPost } from '../generated/api/default/default';
+import { BrainAnswer } from '../generated/dto/brainAnswer';
+import { MY_USER_ID } from '../App';
+import { useQuestContext } from '../useQuestContext';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import dayjs from 'dayjs';
+import { UserDisplayRow } from './UserDisplayRow';
 
 interface BrainDetailProps {
   quest: DetailedQuest;
@@ -17,7 +17,7 @@ interface BrainDetailProps {
 export function BrainDetail({ quest }: BrainDetailProps) {
   const { trigger: submit } = useAnswerBrainQuestsQuestIdAnswerPost(quest.id);
   const { refetchQuests } = useQuestContext();
-  const [answerText, setAnswerText] = useState("");
+  const [answerText, setAnswerText] = useState('');
 
   const submitAnswer = useCallback(() => {
     const answer: BrainAnswer = {
@@ -33,37 +33,36 @@ export function BrainDetail({ quest }: BrainDetailProps) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === "Enter") {
+      if (e.code === 'Enter') {
         submitAnswer();
       }
     };
-    window.addEventListener("keydown", handleKeyDown, false);
-    return () => window.removeEventListener("keydown", handleKeyDown, false);
+    window.addEventListener('keydown', handleKeyDown, false);
+    return () => window.removeEventListener('keydown', handleKeyDown, false);
   }, [submitAnswer]);
 
   const answerRows = useMemo(() => {
     const n = quest.brain_answers.length;
-    console.log(n);
     return (
       <>
         <Typography
           sx={{
-            fontSize: "16px",
+            fontSize: '16px',
             fontWeight: 600,
             padding: '12px 0px',
             marginTop: 0,
-            position: "sticky",
+            position: 'sticky',
             zIndex: 99,
             top: 80,
-            backgroundColor: "white",
+            backgroundColor: 'white',
           }}
         >
-          {n.toString() + (n == 1 ? " Answer" : " Answers")}
+          {n.toString() + (n == 1 ? ' Answer' : ' Answers')}
         </Typography>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             gap: 1,
           }}
         >
@@ -72,63 +71,31 @@ export function BrainDetail({ quest }: BrainDetailProps) {
               <Box
                 key={idx}
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   gap: 2,
                 }}
               >
+                <UserDisplayRow
+                  user={answer.author}
+                  date={`Replied at ${dayjs(answer.created_at)
+                    .toDate()
+                    .toLocaleDateString()} ${dayjs(answer.created_at)
+                    .toDate()
+                    .toLocaleTimeString()}`}
+                  text={answer.text}
+                />
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "10px",
-                    border: "1px solid var(--Border, rgba(214, 214, 214, 1))",
-                    gap: 2,
-                    padding: 1,
-                    width: "100%",
-                  }}
-                >
-                  <UserAvatar user_id={answer.author} />
-                  <Box
-                    sx={{
-                      flexGrow: 1,
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: "16px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {answer.text}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: "#71727A",
-                        fontSize: "12px",
-                        fontWeight: 400,
-                      }}
-                    >
-                      Replied at{" "}
-                      {dayjs(answer.created_at).toDate().toLocaleDateString() +
-                        " " +
-                        dayjs(answer.created_at).toDate().toLocaleTimeString()}
-                    </Typography>
-                  </Box>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
+                    display: 'flex',
                   }}
                 >
                   {answer.accepted ? (
-                    <ThumbUpIcon color={"secondary"} />
+                    <ThumbUpIcon color={'secondary'} />
                   ) : (
-                    <Box sx={{ color: "white" }}>
-                      <ThumbUpIcon color={"inherit"} />
+                    <Box sx={{ color: 'white' }}>
+                      <ThumbUpIcon color={'inherit'} />
                     </Box>
                   )}
                 </Box>
@@ -142,7 +109,17 @@ export function BrainDetail({ quest }: BrainDetailProps) {
 
   return (
     <Box>
-      <Box sx={{ display: "flex", alignItems: "center", position: 'sticky', top: 0, zIndex: 999, backgroundColor: 'white', padding: '24px 0px' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          position: 'sticky',
+          top: 0,
+          zIndex: 999,
+          backgroundColor: 'white',
+          padding: '24px 0px',
+        }}
+      >
         <Typography color="text.secondary">
           <AddIcon />
         </Typography>
@@ -154,10 +131,10 @@ export function BrainDetail({ quest }: BrainDetailProps) {
           onChange={(e) => {
             setAnswerText(e.target.value);
           }}
-          color={"secondary"}
+          color={'secondary'}
           InputProps={{
             style: {
-              borderRadius: "71px",
+              borderRadius: '71px',
             },
           }}
         />

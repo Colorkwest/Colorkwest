@@ -34,7 +34,7 @@ export function QuestPost({
     });
     shrinkPrevious();
     setExpanded(true);
-  }, [expanded, setShrinkPrevious, shrinkPrevious, setExpanded]);
+  }, [expanded, setShrinkPrevious, setExpanded, shrinkPrevious]);
 
   const questDetail = useMemo(() => {
     if (!expanded) return null;
@@ -53,7 +53,10 @@ export function QuestPost({
         borderRadius: '10px',
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }} onClick={() => setExpanded((prev) => !prev)}>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+        onClick={() => setExpanded((prev) => !prev)}
+      >
         <Box sx={{ display: 'flex', gap: 1 }}>
           <Box
             sx={{ display: 'flex', gap: 1 }}

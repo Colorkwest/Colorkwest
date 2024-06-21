@@ -130,7 +130,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             ))}
           </Masonry>
         </Box>
-        <NewQuestModalComponent onCreate={refetchQuestData}/>
+        <NewQuestModalComponent onCreate={refetchQuestData} />
       </QuestContext.Provider>
     </>
   );
