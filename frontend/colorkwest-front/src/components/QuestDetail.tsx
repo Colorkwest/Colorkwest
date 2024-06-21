@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { QuestTypeEnum } from '../enums';
 import { DetailedQuest } from '../generated/dto';
 import { BrainDetail } from './BrainDetail';
@@ -8,10 +9,13 @@ interface QuestDetailProps {
 }
 
 export function QuestDetail({ quest }: QuestDetailProps) {
-  if (quest.type == QuestTypeEnum.BRAIN) {
-    return <BrainDetail quest={quest} />;
-  } else if (quest.type == QuestTypeEnum.BRAWN) {
-    return <BrawnDetail quest={quest} />;
-  }
-  return <></>;
+  const detail = useMemo(() => {
+    if (quest.type == QuestTypeEnum.BRAIN) {
+      return <BrainDetail quest={quest} />;
+    } else if (quest.type == QuestTypeEnum.BRAWN) {
+      return <BrawnDetail quest={quest} />;
+    }
+    return <></>;
+  }, [quest]);
+  return detail;
 }

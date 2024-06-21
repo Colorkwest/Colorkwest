@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { ProfileComponent } from './ProfileComponent';
 import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { DetailedQuest } from '../generated/dto';
 import { UserAvatar } from './UserAvatar';
 import { MY_USER_ID } from '../App';
@@ -64,6 +64,21 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
     return () => document.removeEventListener('keydown', handleEscapeKey);
   }, [shrinkPrevious, setShrinkPrevious]);
 
+  const questDisplay = useMemo(() => {
+    return filteredQuests.map((quest) => (
+      <QuestPost
+        avatarClick={() => {
+          setSelectedUserID(quest.author);
+        }}
+        key={quest.id}
+        quest={quest}
+        users={users}
+        shrinkPrevious={shrinkPrevious}
+        setShrinkPrevious={setShrinkPrevious}
+      />
+    ));
+  }, [filteredQuests]);
+
   return (
     <>
       <Box
@@ -104,18 +119,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
           }}
         >
           <Masonry columns={3} spacing={2} sequential>
-            {filteredQuests.map((quest) => (
-              <QuestPost
-                avatarClick={() => {
-                  setSelectedUserID(quest.author);
-                }}
-                key={quest.id}
-                quest={quest}
-                users={users}
-                shrinkPrevious={shrinkPrevious}
-                setShrinkPrevious={setShrinkPrevious}
-              />
-            ))}
+            {questDisplay}
           </Masonry>
           <Box width={600} height={600}>
             <StatDisplay str={10} cha={10} int={20} dex={40} />

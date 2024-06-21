@@ -40,7 +40,7 @@ export function QuestPost({
     if (!expanded) return null;
 
     return <QuestDetail quest={quest} />;
-  }, [expanded]);
+  }, [expanded, quest]);
 
   return (
     <Box
