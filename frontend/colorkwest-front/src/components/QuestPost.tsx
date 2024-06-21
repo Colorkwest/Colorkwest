@@ -1,11 +1,10 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
-import { GetUsersUsersGet200, QuestType } from '../generated/dto';
+import { Box, Stack, Typography } from '@mui/material';
+import { GetUsersUsersGet200 } from '../generated/dto';
 import { DetailedQuest } from '../generated/dto/detailedQuest';
 import { useCallback, useMemo, useState } from 'react';
 import { TraitChip } from './TraitChip';
 import { UserAvatar } from './UserAvatar';
 import { QuestDetail } from './QuestDetail';
-import { QuestTypeEnum } from '../enums';
 
 interface QuestPostProps {
   quest: DetailedQuest;
@@ -17,13 +16,11 @@ interface QuestPostProps {
 
 export function QuestPost({
   quest,
-  users,
   shrinkPrevious,
   setShrinkPrevious,
   avatarClick,
 }: QuestPostProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
-  const [inputAnswer, setInputAnswer] = useState<string>('');
 
   const randomTags = [
     <TraitChip name="Cat" />,
