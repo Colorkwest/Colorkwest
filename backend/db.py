@@ -75,7 +75,7 @@ brawn2 = Quest(
 )
 
 brawn3 = Quest(
-    id=3,
+    id=5,
     type=QuestType.BRAWN,
     author=1,
     title="Can anyone go to lunch with Fred?",
