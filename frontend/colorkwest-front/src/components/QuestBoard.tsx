@@ -1,10 +1,11 @@
 import { useGetQuestsQuestsGet, useGetUsersUsersGet } from '../generated/api/default/default';
 import { Box } from '@mui/material';
-import { StatDisplay } from './StatDisplay';
+import { ProfileComponent } from './ProfileComponent';
 import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
 import { useEffect, useState } from 'react';
 import { DetailedQuest } from '../generated/dto';
+import { UserAvatar } from './UserAvatar';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -16,6 +17,9 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const { data: quests } = useGetQuestsQuestsGet();
   const { data: users } = useGetUsersUsersGet();
   const [filteredQuests, setFilteredQuests] = useState<DetailedQuest[]>([]);
+
+  const [selectedUserID, setSelectedUserID] = useState<number | null>(null);
+  const [loginedUserID, setLoginUserID] = useState<number>(1);
 
   useEffect(() => {
     if (!quests) setFilteredQuests([]);
@@ -40,7 +44,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   }, [quests, selectedTab]);
 
   const [shrinkPrevious, setShrinkPrevious] = useState(() => {
-    return () => {};
+    return () => { };
   });
 
   // Escape key to unfocus quest
@@ -49,7 +53,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
       if (event.code === 'Escape') {
         shrinkPrevious();
         setShrinkPrevious(() => {
-          return () => {};
+          return () => { };
         });
       }
     }
@@ -76,12 +80,33 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             users={users}
             shrinkPrevious={shrinkPrevious}
             setShrinkPrevious={setShrinkPrevious}
+            avatarClick={setSelectedUserID}
           />
         ))}
       </Masonry>
-      <Box width={600} height={600}>
-        <StatDisplay str={10} cha={10} int={20} dex={40} />
+      <Box
+        sx={{
+          position: 'fixed',
+          right: '20px',
+          top: '20px',
+        }} onClick={() => setSelectedUserID(loginedUserID)}>
+        <UserAvatar user_id={loginedUserID} />
       </Box>
-    </Box>
+      {
+        selectedUserID &&
+        <Box onClick={() => { setSelectedUserID(null); }}
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          }}
+        >
+          <ProfileComponent userID={selectedUserID} />
+        </Box>
+      }
+      <NewQuestModalComponent />
+    </Box >
   );
 }

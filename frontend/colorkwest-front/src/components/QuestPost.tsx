@@ -11,9 +11,10 @@ interface QuestPostProps {
   users?: GetUsersUsersGet200;
   shrinkPrevious: () => void;
   setShrinkPrevious: React.Dispatch<React.SetStateAction<() => void>>;
+  avatarClick: (x: number | null) => void;
 }
 
-export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: QuestPostProps) {
+export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious, avatarClick }: QuestPostProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [inputAnswer, setInputAnswer] = useState<string>('');
 
@@ -48,7 +49,9 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: Q
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <UserAvatar user_id={quest.author} />
+          <Box onClick={() => avatarClick(quest.author)}>
+            <UserAvatar user_id={quest.author} />
+          </Box>
           <Box>
             <Typography
               sx={{
