@@ -48,7 +48,13 @@ brain2 = Quest(
     deadline=datetime.today() + timedelta(days=1),
 )
 
-brain_answer1 = BrainAnswer(quest=1, author=1, text="Protein", accepted=True)
+brain_answer1 = BrainAnswer(
+    quest=1,
+    author=1,
+    text="Protein",
+    accepted=True,
+    created_at=datetime.today() - timedelta(days=2),
+)
 
 brawn1 = Quest(
     id=2,

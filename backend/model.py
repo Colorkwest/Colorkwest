@@ -37,6 +37,7 @@ class BrainAnswer(BaseModel):
     author: int
     text: str
     accepted: bool
+    created_at: datetime
 
 
 class Quest(BaseModel):
@@ -50,6 +51,7 @@ class Quest(BaseModel):
     deadline: datetime
     max_participants: int  # 0: unlimited
 
+
 class CreateQuest(BaseModel):
     type: QuestType
     author: int
@@ -59,6 +61,7 @@ class CreateQuest(BaseModel):
     trait: Trait
     deadline: datetime
     max_participants: int  # 0: unlimited
+
 
 class BrawnParticipant(BaseModel):
     quest: int
