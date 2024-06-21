@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { GetUsersUsersGet200 } from '../generated/dto';
 import { DetailedQuest } from '../generated/dto/detailedQuest';
-import { useCallback, useMemo, useState } from 'react';
+import { ReactElement, useCallback, useMemo, useState } from 'react';
 import { TraitChip } from './TraitChip';
 import { UserAvatar } from './UserAvatar';
 import { QuestDetail } from './QuestDetail';
@@ -37,11 +37,11 @@ export function QuestPost({
     <TraitChip name="Joyful" />,
   ];
 
-  const tags = useMemo(() => {
+  const tags: ReactElement = useMemo(() => {
     return (
       <>
-        {randomTags[Math.floor(Math.random() * randomTags.length)]}
-        {randomTags[Math.floor(Math.random() * randomTags.length)]}
+        {randomTags[quest.id % randomTags.length]}
+        {quest.id % 2 == 0 && randomTags[(quest.id + 8) % randomTags.length]}
       </>
     );
   }, []);
