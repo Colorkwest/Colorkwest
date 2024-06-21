@@ -4,6 +4,7 @@ import { DetailedQuest } from '../generated/dto/detailedQuest';
 import { useCallback, useState } from 'react';
 import { TraitChip } from './TraitChip';
 import { UserAvatar } from './UserAvatar';
+import { QuestDetail } from './QuestDetail';
 
 interface QuestPostProps {
   quest: DetailedQuest;
@@ -59,42 +60,19 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: Q
         </Stack>
         <Typography color="text.secondary">{quest.description}</Typography>
         <Box sx={{ marginLeft: 'auto' }}>
-          <Typography>
-            {quest.brain_answers?.length}/{quest.max_participants} participants
+          <Typography
+            sx={{
+              fontSize: '14px',
+              fontWeight: 400,
+            }}
+          >
+            {quest.brain_answers?.length || 0}
+            {quest.max_participants ? '/' + quest.max_participants : ''} participant
+            {quest.brain_answers?.length != 1 && 's'}
           </Typography>
         </Box>
       </Box>
-      {expanded && <> PUT QUEST POST DETAIL COMPONENT HERE</>}
+      {expanded && <QuestDetail quest={quest} />}
     </Box>
   );
 }
-
-// {expended && (
-//   <div>
-//     {quest.status ? (
-//       <div>
-//         <input
-//           type="text"
-//           placeholder="please inpu your answer"
-//           value={inputAnswer}
-//           onChange={(e) => {
-//             setInputAnswer(e.target.value);
-//           }}
-//         />
-//         <button onClick={() => handleAnswer(inputAnswer)}>Answer</button>
-//       </div>
-//     ) : (
-//       <div>This answer is closed.</div>
-//     )}
-//     <ol>
-//       {quest.brain_answers?.map((item: BrainAnswer, index) => (
-//         <div key={index}>
-//           <p>{item.accepted}</p>
-//           <p>{item.author}</p>
-//           <p>{item.accepted}</p>
-//           <p>{item.accepted}</p>
-//         </div>
-//       ))}
-//     </ol>
-//   </div>
-// )}

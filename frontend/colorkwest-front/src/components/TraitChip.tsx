@@ -12,19 +12,19 @@ export function TraitChip({ trait, name }: TraitChipProps) {
   switch (trait) {
     case 1:
       chipText = 'Strength';
-      color = 'secondary';
+      color = 'primary';
       break;
     case 2:
       chipText = 'Dexterity';
-      color = 'secondary';
+      color = 'primary';
       break;
     case 3:
       chipText = 'Charisma';
-      color = 'primary';
+      color = 'secondary';
       break;
     case 4:
       chipText = 'Intelligence';
-      color = 'primary';
+      color = 'secondary';
       break;
     case undefined:
       break;
