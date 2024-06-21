@@ -59,31 +59,39 @@ export function BrainDetail({ quest }: BrainDetailProps) {
             gap: 1,
           }}
         >
-          {quest.brain_answers.map((answer, idx) => (
-            <Box sx={{ display: 'flex' }}>
-              <Box
-                sx={{
-                  padding: 1,
-                  borderRadius: '10px',
-                  border: '1px solid var(--Border, rgba(214, 214, 214, 1))',
-                  key: idx,
-                  flexGrow: 1,
-                }}
-              >
-                {answer.text}
+          {quest.brain_answers.map((answer, idx) => {
+            return (
+              <Box sx={{ display: 'flex' }}>
+                <Box
+                  sx={{
+                    padding: 1,
+                    borderRadius: '10px',
+                    border: '1px solid var(--Border, rgba(214, 214, 214, 1))',
+                    key: idx,
+                    flexGrow: 1,
+                  }}
+                >
+                  {answer.text}
+                </Box>
+                <Box
+                  sx={{
+                    paddingX: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {answer.accepted ? (
+                    <ThumbUpIcon color={'secondary'} />
+                  ) : (
+                    <Box sx={{ color: 'white' }}>
+                      <ThumbUpIcon color={'inherit'} />
+                    </Box>
+                  )}
+                </Box>
               </Box>
-              <Box
-                sx={{
-                  paddingX: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <ThumbUpIcon color="secondary" />
-              </Box>
-            </Box>
-          ))}
+            );
+          })}
         </Box>
       </>
     );
