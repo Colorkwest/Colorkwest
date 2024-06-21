@@ -50,6 +50,15 @@ class Quest(BaseModel):
     deadline: datetime
     max_participants: int  # 0: unlimited
 
+class CreateQuest(BaseModel):
+    type: QuestType
+    author: int
+    title: str
+    description: str
+    status: Status
+    trait: Trait
+    deadline: datetime
+    max_participants: int  # 0: unlimited
 
 class BrawnParticipant(BaseModel):
     quest: int

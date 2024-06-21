@@ -15,6 +15,7 @@ import type {
   SWRMutationConfiguration
 } from 'swr/mutation'
 import type {
+  CreateQuest,
   DetailedQuest,
   GetUsersUsersGet200,
   HTTPValidationError,
@@ -108,12 +109,12 @@ export const useGetQuestsQuestsGet = <TError = unknown>(
  * @summary Create Quest
  */
 export const createQuestQuestsPost = (
-    quest: Quest,
+    createQuest: CreateQuest,
  options?: SecondParameter<typeof mutate>) => {
       return mutate<unknown>(
       {url: `/quests`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: quest
+      data: createQuest
     },
       options);
     }
@@ -121,7 +122,7 @@ export const createQuestQuestsPost = (
 
 
 export const getCreateQuestQuestsPostMutationFetcher = ( options?: SecondParameter<typeof mutate>) => {
-  return (_: string, { arg }: { arg: Quest }): Promise<unknown> => {
+  return (_: string, { arg }: { arg: CreateQuest }): Promise<unknown> => {
     return createQuestQuestsPost(arg, options);
   }
 }
@@ -134,7 +135,7 @@ export type CreateQuestQuestsPostMutationError = HTTPValidationError
  * @summary Create Quest
  */
 export const useCreateQuestQuestsPost = <TError = HTTPValidationError>(
-   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof createQuestQuestsPost>>, TError, string, Quest, Awaited<ReturnType<typeof createQuestQuestsPost>>> & { swrKey?: string }, request?: SecondParameter<typeof mutate> }
+   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof createQuestQuestsPost>>, TError, string, CreateQuest, Awaited<ReturnType<typeof createQuestQuestsPost>>> & { swrKey?: string }, request?: SecondParameter<typeof mutate> }
 ) => {
 
   const {swr: swrOptions, request: requestOptions} = options ?? {}

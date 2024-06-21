@@ -6,6 +6,33 @@ import dayjs, { Dayjs } from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
+import { createQuestQuestsPost } from "../generated/api/default/default";
+
+const typeToTrait = (type: "cha" | "int" | "str" | "dex") => {
+  switch (type) {
+    case "str":
+      return 1;
+    case "dex":
+      return 2;
+    case "cha":
+      return 3;
+    case "int":
+      return 4;
+  }
+};
+
+const typeToVal = (type: "cha" | "int" | "str" | "dex") => {
+  switch (type) {
+    case "str":
+      return 2;
+    case "dex":
+      return 2;
+    case "cha":
+      return 1;
+    case "int":
+      return 1;
+  }
+};
 
 export const NewQuestModalComponent = () => {
   const [isCreate, setIsCreate] = useState<boolean>();
@@ -18,6 +45,7 @@ export const NewQuestModalComponent = () => {
   const [inputDeadline, setInputDeadline] = useState<Dayjs | null>(dayjs());
   const [inputLimit, setInputLimit] = useState<number>(0);
   const [inputTag, setInputTag] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const style = isCreate ? { transform: "rotate(45deg)" } : {};
 
@@ -31,7 +59,23 @@ export const NewQuestModalComponent = () => {
     setSelectedType("cha");
   };
 
-  const handleCreate = () => {};
+  const handleCreate = () => {
+    setLoading(true);
+    createQuestQuestsPost({
+      author: 1,
+      type: typeToVal(selectedType),
+      trait: typeToTrait(selectedType),
+      title: inputTitle,
+      description: inputDescription,
+      deadline: inputDeadline?.toISOString() ?? "",
+      max_participants: inputLimit,
+      status: 1,
+      // tags: inputTag,
+    }).then(() => {
+      setLoading(false);
+      handleCancel();
+    });
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

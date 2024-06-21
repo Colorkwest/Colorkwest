@@ -4,7 +4,7 @@ from fastapi.openapi.utils import get_openapi
 
 from db import (Tables, db, get_brain_answers, get_brawn_participants,
                 get_quest_idx)
-from model import DetailedQuest, Quest, QuestType, Status, User
+from model import CreateQuest, DetailedQuest, Quest, QuestType, Status, User
 
 app = FastAPI()
 
@@ -20,6 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+nextId = len(db[Tables.QUEST]) + 1
 
 def custom_openapi():
     openapi_schema = get_openapi(
@@ -64,11 +65,12 @@ async def get_quests() -> list[DetailedQuest]:
 
 
 @app.post("/quests")
-async def create_quest(quest: Quest):
-    quest.id = len(db[Tables.QUEST])
-    db[Tables.QUEST].append(quest)
-
-    return db[Tables.QUEST][-1]
+async def create_quest(quest: CreateQuest):
+    global nextId
+    newQuest = Quest(**quest.dict(), id=nextId)
+    nextId += 1
+    db[Tables.QUEST].append(newQuest)
+    return newQuest
 
 
 @app.patch("/quests/{quest_id}")
