@@ -9,6 +9,7 @@ import { UserAvatar } from './UserAvatar';
 import { MY_USER_ID } from '../App';
 import { QuestContext } from '../useQuestContext';
 import { StatDisplay } from './StatDisplay';
+import { NewQuestModalComponent } from './NewQuestComponent';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -16,7 +17,6 @@ type QuestBoardProps = {
 
 export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const { data: questData, mutate: refetchQuestData } = useGetQuestsQuestsGet();
-
   const { data: users } = useGetUsersUsersGet();
   const [filteredQuests, setFilteredQuests] = useState<DetailedQuest[]>([]);
 
@@ -31,15 +31,12 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
         switch (selectedTab) {
           case 0: // All Quests
             return true;
-            break;
           case 1: // My Tasks
             const brawn = quest.brawn_participants.find((p) => p.user == MY_USER_ID);
             const brain = quest.brain_answers.find((a) => a.author == MY_USER_ID);
             return brawn || brain;
-            break;
           case 2: // My Requests
             return quest.author == MY_USER_ID;
-            break;
         }
       }) || [],
     );
@@ -125,6 +122,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             <StatDisplay str={10} cha={10} int={20} dex={40} />
           </Box>
         </Box>
+        <NewQuestModalComponent onCreate={refetchQuestData}/>
       </QuestContext.Provider>
     </>
   );
