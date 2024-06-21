@@ -19,13 +19,22 @@ class Tables(Enum):
     BRAWN_PARTICIPANT = 4
 
 
-user1 = User(id=1, name="Mr. Brawn", str=9, dex=2, cha=1, int=4)
-user2 = User(id=2, name="Mrs. Charisma", str=5, dex=3, cha=42, int=4)
+user1 = User(id=1, name="Kiyo", str=9, dex=2, cha=1, int=4)
+user2 = User(id=2, name="Vaness", str=5, dex=3, cha=42, int=4)
+user3 = User(id=3, name="Maiko", str=9, dex=2, cha=1, int=4)
+user4 = User(id=4, name="Josh", str=5, dex=3, cha=42, int=4)
+user5 = User(id=5, name="Nikita", str=9, dex=2, cha=1, int=4)
+user6 = User(id=6, name="Keiji", str=5, dex=3, cha=42, int=4)
+user7 = User(id=7, name="Sonika", str=9, dex=2, cha=1, int=4)
+user8 = User(id=8, name="Hugo", str=5, dex=3, cha=42, int=4)
+user9 = User(id=9, name="Bryan", str=9, dex=2, cha=1, int=4)
+user10 = User(id=10, name="Keiko", str=5, dex=3, cha=42, int=4)
+user11 = User(id=11, name="Kohei", str=9, dex=2, cha=1, int=4)
 
 brain1 = Quest(
     id=1,
     type=QuestType.BRAIN,
-    author=2,
+    author=3,
     title="What should I name my new cat?",
     max_participants=0,
     description="He’s brown and fluffy!",
@@ -37,7 +46,7 @@ brain1 = Quest(
 brain2 = Quest(
     id=4,
     type=QuestType.BRAIN,
-    author=2,
+    author=4,
     title="Please introduce people around you to me!",
     max_participants=0,
     description="""1. South Korean
@@ -59,7 +68,7 @@ brain_answer1 = BrainAnswer(
 brawn1 = Quest(
     id=2,
     type=QuestType.BRAWN,
-    author=1,
+    author=8,
     title="We need help to prepare the gift packs for EXPO tomorrow!",
     max_participants=20,
     description="",
@@ -71,7 +80,7 @@ brawn1 = Quest(
 brawn2 = Quest(
     id=3,
     type=QuestType.BRAWN,
-    author=1,
+    author=2,
     title="Any volunteer to host next Friday’s Joyful Studio?",
     max_participants=5,
     description="We are open to multiple participants",
@@ -83,7 +92,7 @@ brawn2 = Quest(
 brawn3 = Quest(
     id=5,
     type=QuestType.BRAWN,
-    author=1,
+    author=12,
     title="Can anyone go to lunch with Fred?",
     max_participants=3,
     description="He likes everything except raw fish!",
