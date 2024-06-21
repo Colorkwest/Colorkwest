@@ -22,7 +22,6 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
 
   const [leaderOn, setLeaderOn] = useState<boolean>(false);
   const [selectedUserID, setSelectedUserID] = useState<number | null>(null);
-  const [loginedUserID, setLoginUserID] = useState<number>(1);
 
   useEffect(() => {
     if (!questData) setFilteredQuests([]);
@@ -85,9 +84,9 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
           right: '20px',
           top: '20px',
         }}
-        onClick={() => setSelectedUserID(loginedUserID)}
+        onClick={() => setSelectedUserID(MY_USER_ID)}
       >
-        <UserAvatar user_id={loginedUserID} />
+        <UserAvatar user_id={MY_USER_ID} />
       </Box>
       {selectedUserID && (
         <Box
