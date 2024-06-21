@@ -57,7 +57,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                 position: 'relative',
                 top: '20%',
                 width: '800px',
-                height: '600px',
+                height: '650px',
                 borderRadius: '20px',
                 margin: 'auto',
                 backgroundColor: 'white',
@@ -66,15 +66,15 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
             }}>
                 <Typography
                     sx={{
-                        fontSize: '18px',
+                        fontSize: '26px',
                         fontWeight: 800,
                         alignContent: 'center',
                     }}
-                >{'Who are masters?'}
+                >{'Who are the top masters?'}
                 </Typography>
                 <Typography
                     sx={{
-                        fontSize: '14px',
+                        fontSize: '18px',
                         fontWeight: 800,
                         alignContent: 'center',
                     }}
@@ -100,6 +100,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                                 alignContent: 'center',
                                 fontWeight: 800,
                                 color: '#EC9007',
+                                marginBottom: '10px',
                             }}
                         >Brain Masters</Typography>
                         <Box sx={{
@@ -150,6 +151,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                             flexDirection: 'column',
                             textAlign: 'center',
                             marginLeft: "20px",
+                            marginTop: "10px",
                             width: "100%",
                             maxHeight: "280px",
                             overflowX: 'auto'
@@ -218,6 +220,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                                 alignContent: 'center',
                                 fontWeight: 800,
                                 color: '#006FFD',
+                                marginBottom: '10px',
                             }}
                         >Brawn Masters</Typography>
                         <Box sx={{

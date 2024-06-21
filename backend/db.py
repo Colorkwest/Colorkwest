@@ -43,6 +43,34 @@ brain1 = Quest(
     deadline=datetime.today() + timedelta(days=1),
 )
 
+brain3 = Quest(
+    id=99,
+    type=QuestType.BRAIN,
+    author=1,
+    title="What is the best way to cook a steak?",
+    max_participants=0,
+    description="I like meat",
+    status=Status.OPEN,
+    trait=Trait.INT,
+    deadline=datetime.today() + timedelta(days=1),
+)
+
+brain_answer98 = BrainAnswer(
+    quest=99,
+    author=5,
+    text="Well done",
+    accepted=False,
+    created_at=datetime.today() - timedelta(days=7),
+)
+
+brain_answer99 = BrainAnswer(
+    quest=99,
+    author=6,
+    text="Raw",
+    accepted=True,
+    created_at=datetime.today() - timedelta(days=7),
+)
+
 brain_answer1 = BrainAnswer(
     quest=1,
     author=1,
@@ -182,12 +210,14 @@ brawn3 = Quest(
 
 
 users = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11]
-quests = [brain1, brawn1, brawn2, brain2, brawn3]
+quests = [brain1, brawn1, brawn2, brain2, brawn3, brain3]
 brain_answers = [
     brain_answer1,
     brain_answer2,
     brain_answer3,
     brain_answer4,
+    brain_answer98,
+    brain_answer99,
 ]
 brawn_participants = [
     brawn_participant1,

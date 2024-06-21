@@ -113,6 +113,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             flexDirection: 'column',
             height: 'calc(100% - 227px)',
             overflowY: 'auto',
+            margin: '0px 42px',
             position: 'relative',
           }}
         >
