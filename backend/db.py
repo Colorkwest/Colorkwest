@@ -20,7 +20,7 @@ class Tables(Enum):
 
 
 user1 = User(id=1, name="Kiyo", str=9, dex=2, cha=1, int=4)
-user2 = User(id=2, name="Vaness", str=5, dex=3, cha=42, int=4)
+user2 = User(id=2, name="Vanessa", str=5, dex=3, cha=42, int=4)
 user3 = User(id=3, name="Maiko", str=9, dex=2, cha=1, int=4)
 user4 = User(id=4, name="Josh", str=5, dex=3, cha=42, int=4)
 user5 = User(id=5, name="Nikita", str=9, dex=2, cha=1, int=4)

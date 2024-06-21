@@ -5,6 +5,7 @@ from fastapi.openapi.utils import get_openapi
 from db import Tables, db, get_brain_answers, get_brawn_participants, get_quest_idx
 from model import (
     BrainAnswer,
+    BrawnParticipant,
     CreateQuest,
     DetailedQuest,
     Quest,
@@ -97,6 +98,12 @@ async def edit_quest(quest_id, quest: Quest):
 async def answer_brain(quest_id, answer: BrainAnswer):
     db[Tables.BRAIN_ANSWER].append(answer)
     return db[Tables.BRAIN_ANSWER][-1]
+
+
+@app.post("/quests/{quest_id}/participate")
+async def participiate_brawn(quest_id, participant: BrawnParticipant):
+    db[Tables.BRAWN_PARTICIPANT].append(participant)
+    return db[Tables.BRAWN_PARTICIPANT][-1]
 
 
 @app.post("/quests/{quest_id}/complete")
