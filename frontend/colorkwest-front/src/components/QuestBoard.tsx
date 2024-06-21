@@ -5,14 +5,40 @@ import { NewQuestModalComponent } from './NewQuestComponent';
 import { Masonry } from '@mui/lab';
 import { QuestPost } from './QuestPost';
 import { useEffect, useState } from 'react';
+import { DetailedQuest } from '../generated/dto';
 
 type QuestBoardProps = {
   selectedTab: number;
 };
 
+const MY_USER_ID = 2;
+
 export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const { data: quests } = useGetQuestsQuestsGet();
   const { data: users } = useGetUsersUsersGet();
+  const [filteredQuests, setFilteredQuests] = useState<DetailedQuest[]>([]);
+
+  useEffect(() => {
+    if (!quests) setFilteredQuests([]);
+
+    setFilteredQuests(
+      quests?.filter((quest) => {
+        switch (selectedTab) {
+          case 0: // All Quests
+            return true;
+            break;
+          case 1: // My Tasks
+            const brawn = quest.brawn_participants.find((p) => p.user == MY_USER_ID);
+            const brain = quest.brain_answers.find((a) => a.author == MY_USER_ID);
+            return brawn || brain;
+            break;
+          case 2: // My Requests
+            return quest.author == MY_USER_ID;
+            break;
+        }
+      }) || [],
+    );
+  }, [quests, selectedTab]);
 
   const [shrinkPrevious, setShrinkPrevious] = useState(() => {
     return () => {};
@@ -44,7 +70,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
       }}
     >
       <Masonry columns={3} spacing={2}>
-        {(quests || []).map((quest) => (
+        {filteredQuests.map((quest) => (
           <QuestPost
             key={quest.id}
             quest={quest}

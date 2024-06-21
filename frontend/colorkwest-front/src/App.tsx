@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TabSelector } from './components/TabSelector.tsx';
 import { QuestBoard } from './components/QuestBoard.tsx';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 function App() {
   const [selectedTab, setSelectedTab] = useState(0);
