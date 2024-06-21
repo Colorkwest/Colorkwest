@@ -8,6 +8,7 @@ import { MY_USER_ID } from '../App';
 import { useQuestContext } from '../useQuestContext';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import dayjs from 'dayjs';
+import { UserAvatar } from './UserAvatar';
 
 interface BrainDetailProps {
   quest: DetailedQuest;
@@ -24,7 +25,7 @@ export function BrainDetail({ quest }: BrainDetailProps) {
       author: MY_USER_ID,
       quest: quest.id,
       text: answerText,
-      created_at: dayjs().toString(),
+      created_at: dayjs().toISOString(),
     };
     submit(answer);
     refetchQuests();
@@ -63,24 +64,59 @@ export function BrainDetail({ quest }: BrainDetailProps) {
         >
           {quest.brain_answers.map((answer, idx) => {
             return (
-              <Box sx={{ display: 'flex' }}>
+              <Box
+                key={idx}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 2,
+                }}
+              >
                 <Box
                   sx={{
-                    padding: 1,
-                    borderRadius: '10px',
-                    border: '1px solid var(--Border, rgba(214, 214, 214, 1))',
-                    key: idx,
-                    flexGrow: 1,
-                  }}
-                >
-                  {answer.text}
-                </Box>
-                <Box
-                  sx={{
-                    paddingX: 2,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    borderRadius: '10px',
+                    border: '1px solid var(--Border, rgba(214, 214, 214, 1))',
+                    gap: 2,
+                    padding: 1,
+                    width: '100%',
+                  }}
+                >
+                  <UserAvatar user_id={answer.author} />
+                  <Box
+                    sx={{
+                      flexGrow: 1,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: '16px',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {answer.text}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#71727A',
+                        fontSize: '12px',
+                        fontWeight: 400,
+                      }}
+                    >
+                      Replied at{' '}
+                      {dayjs(answer.created_at).toDate().toLocaleDateString() +
+                        ' ' +
+                        dayjs(answer.created_at).toDate().toLocaleTimeString()}
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box
+                  sx={{
+                    display: 'flex',
                   }}
                 >
                   {answer.accepted ? (
