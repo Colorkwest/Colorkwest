@@ -8,6 +8,7 @@ import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useCreateQuestQuestsPost } from "../generated/api/default/default";
 import { Done } from "@mui/icons-material";
+import { MY_USER_ID } from "../App";
 
 const typeToTrait = (type: "cha" | "int" | "str" | "dex") => {
   switch (type) {
@@ -69,7 +70,7 @@ export const NewQuestModalComponent = ({
   const handleCreate = () => {
     setStatus("loading");
     trigger({
-      author: 1,
+      author: MY_USER_ID,
       type: typeToVal(selectedType),
       trait: typeToTrait(selectedType),
       title: inputTitle,
