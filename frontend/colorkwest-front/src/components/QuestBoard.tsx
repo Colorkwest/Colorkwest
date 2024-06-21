@@ -9,6 +9,7 @@ import { UserAvatar } from './UserAvatar';
 import { MY_USER_ID } from '../App';
 import { QuestContext } from '../useQuestContext';
 import { NewQuestModalComponent } from './NewQuestComponent';
+import { LeaderBoardComponent } from './LeaderBoardComponent.tsx';
 
 type QuestBoardProps = {
   selectedTab: number;
@@ -19,6 +20,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const { data: users } = useGetUsersUsersGet();
   const [filteredQuests, setFilteredQuests] = useState<DetailedQuest[]>([]);
 
+  const [leaderOn, setLeaderOn] = useState<boolean>(false);
   const [selectedUserID, setSelectedUserID] = useState<number | null>(null);
   const [loginedUserID, setLoginUserID] = useState<number>(1);
 
@@ -130,7 +132,8 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             ))}
           </Masonry>
         </Box>
-        <NewQuestModalComponent onCreate={refetchQuestData} />
+        <NewQuestModalComponent onCreate={refetchQuestData} handleOpenLeader={() => setLeaderOn(true)} />
+        {leaderOn && <LeaderBoardComponent handleClose={() => setLeaderOn(false)} />}
       </QuestContext.Provider>
     </>
   );

@@ -3,13 +3,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TabSelector } from './components/TabSelector.tsx';
 import { QuestBoard } from './components/QuestBoard.tsx';
 import { Typography } from '@mui/material';
-import { LeaderBoardComponent } from './components/LeaderBoardComponent.tsx';
 
 export const MY_USER_ID = 2;
 
 function App() {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [leaderOn, setLeaderOn] = useState<boolean>(false);
 
   const theme = createTheme({
     palette: {
@@ -57,7 +55,6 @@ function App() {
       </Typography>
       <TabSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <QuestBoard selectedTab={selectedTab} />
-      {leaderOn && <LeaderBoardComponent handleClose={() => setLeaderOn(false)} />}
     </ThemeProvider>
   );
 }

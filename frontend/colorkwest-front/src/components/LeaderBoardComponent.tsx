@@ -56,9 +56,10 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
         }}>
             <Box onClick={(e) => e.stopPropagation()} sx={{
                 position: 'relative',
-                top: '200px',
+                top: '150px',
                 width: '800px',
-                height: '600px',
+                height: '500px',
+                borderRadius: '20px',
                 margin: 'auto',
                 backgroundColor: 'white',
                 textAlign: 'center',

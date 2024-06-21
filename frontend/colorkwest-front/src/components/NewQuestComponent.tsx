@@ -37,9 +37,10 @@ const typeToVal = (type: "cha" | "int" | "str" | "dex") => {
 };
 
 export const NewQuestModalComponent = ({
-  onCreate,
+  onCreate, handleOpenLeader
 }: {
   onCreate: () => void;
+  handleOpenLeader: () => void;
 }) => {
   const [isCreate, setIsCreate] = useState<boolean>();
   const [selectedType, setSelectedType] = useState<
@@ -120,7 +121,7 @@ export const NewQuestModalComponent = ({
             alignItems: "center",
             width: "30%",
             height: "550px",
-            minWith: "300px",
+            minWidth: "500px",
             gap: "12px",
             backgroundColor: "#FFFFFF",
             padding: "32px 42px",
@@ -343,6 +344,32 @@ export const NewQuestModalComponent = ({
               }}
             >
               +
+            </Box>
+          </Button>
+          <Button
+            sx={{
+              fontSize: "32px",
+              borderRadius: "25px",
+              backgroundColor: "white",
+              width: "60px",
+              height: "50px",
+            }}
+            color="info"
+            onClick={() => handleOpenLeader()}>
+            <Box
+              sx={{
+                // ...style,  
+                display: "flex",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "4px",
+                transition: "all 0.2s ease-in-out",
+                transformOrigin: "center",
+                pointerEvents: "all",
+              }}
+            >
+              <img src="src/assets/leader.svg" />
             </Box>
           </Button>
         </Box>

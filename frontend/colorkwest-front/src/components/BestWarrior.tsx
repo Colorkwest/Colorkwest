@@ -30,10 +30,11 @@ export const BestWarrior = ({ user, type }: Props) => {
             display: 'flex',
             flexDirection: 'column',
             width: '80px',
+            borderRadius: '10px',
             margin: '0 5px',
             flex: 1,
             alignContent: 'center',
-            backgroundColor: 'rgba(0.5,0.5,0.5,0.1)'
+            // backgroundColor: 'rgba(0.5,0.5,0.5,0.1)'
         }}>
             {user && (
                 <>
