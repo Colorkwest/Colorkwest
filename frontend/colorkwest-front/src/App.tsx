@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TabSelector } from './components/TabSelector.tsx';
 import { QuestBoard } from './components/QuestBoard.tsx';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export const MY_USER_ID = 2;
 
@@ -43,16 +43,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Typography
-        sx={{
-          fontSize: '26px',
-          fontWeight: 800,
-          textAlign: 'center',
-          paddingTop: 4,
-        }}
-      >
-        Colorkwest
-      </Typography>
+      <Box sx={{ display: 'flex', width: '100%', paddingY: 2, justifyContent: 'center' }}>
+        <img src={'src/assets/colorkwest.svg'} />
+      </Box>
+
       <TabSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <QuestBoard selectedTab={selectedTab} />
     </ThemeProvider>

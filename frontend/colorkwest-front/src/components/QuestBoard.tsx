@@ -43,7 +43,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   }, [questData, selectedTab]);
 
   const [shrinkPrevious, setShrinkPrevious] = useState(() => {
-    return () => { };
+    return () => {};
   });
 
   // Escape key to unfocus quest
@@ -52,7 +52,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
       if (event.code === 'Escape') {
         shrinkPrevious();
         setShrinkPrevious(() => {
-          return () => { };
+          return () => {};
         });
       }
     }
@@ -111,7 +111,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             paddingY: 4,
             display: 'flex',
             flexDirection: 'column',
-            height: 'calc(100% - 183px)',
+            height: 'calc(100% - 227px)',
             overflowY: 'auto',
             position: 'relative',
           }}
@@ -131,7 +131,10 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             ))}
           </Masonry>
         </Box>
-        <NewQuestModalComponent onCreate={refetchQuestData} handleOpenLeader={() => setLeaderOn(true)} />
+        <NewQuestModalComponent
+          onCreate={refetchQuestData}
+          handleOpenLeader={() => setLeaderOn(true)}
+        />
         {leaderOn && <LeaderBoardComponent handleClose={() => setLeaderOn(false)} />}
       </QuestContext.Provider>
     </>
