@@ -8,7 +8,6 @@ import { DetailedQuest } from '../generated/dto';
 import { UserAvatar } from './UserAvatar';
 import { MY_USER_ID } from '../App';
 import { QuestContext } from '../useQuestContext';
-import { StatDisplay } from './StatDisplay';
 import { NewQuestModalComponent } from './NewQuestComponent';
 
 type QuestBoardProps = {
@@ -111,7 +110,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
             paddingY: 4,
             display: 'flex',
             flexDirection: 'column',
-            height: 'calc(100% - 48px)',
+            height: 'calc(100% - 183px)',
             position: 'relative',
             overflowY: 'auto',
           }}

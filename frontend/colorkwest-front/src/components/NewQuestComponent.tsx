@@ -6,31 +6,31 @@ import dayjs, { Dayjs } from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
-import { createQuestQuestsPost, useCreateQuestQuestsPost } from "../generated/api/default/default";
+import { useCreateQuestQuestsPost } from "../generated/api/default/default";
 import { Done } from "@mui/icons-material";
 
-const typeToTrait = (type: 'cha' | 'int' | 'str' | 'dex') => {
+const typeToTrait = (type: "cha" | "int" | "str" | "dex") => {
   switch (type) {
-    case 'str':
+    case "str":
       return 1;
-    case 'dex':
+    case "dex":
       return 2;
-    case 'cha':
+    case "cha":
       return 3;
-    case 'int':
+    case "int":
       return 4;
   }
 };
 
-const typeToVal = (type: 'cha' | 'int' | 'str' | 'dex') => {
+const typeToVal = (type: "cha" | "int" | "str" | "dex") => {
   switch (type) {
-    case 'str':
+    case "str":
       return 2;
-    case 'dex':
+    case "dex":
       return 2;
-    case 'cha':
+    case "cha":
       return 1;
-    case 'int':
+    case "int":
       return 1;
   }
 };
@@ -41,27 +41,29 @@ export const NewQuestModalComponent = ({
   onCreate: () => void;
 }) => {
   const [isCreate, setIsCreate] = useState<boolean>();
-  const [selectedType, setSelectedType] = useState<'cha' | 'int' | 'str' | 'dex'>('cha');
+  const [selectedType, setSelectedType] = useState<
+    "cha" | "int" | "str" | "dex"
+  >("cha");
 
   const { trigger } = useCreateQuestQuestsPost();
 
-  const [inputTitle, setInputTitle] = useState<string>('');
-  const [inputDescription, setInputDescription] = useState<string>('');
+  const [inputTitle, setInputTitle] = useState<string>("");
+  const [inputDescription, setInputDescription] = useState<string>("");
   const [inputDeadline, setInputDeadline] = useState<Dayjs | null>(dayjs());
   const [inputLimit, setInputLimit] = useState<number>(0);
   const [inputTag, setInputTag] = useState<string[]>([]);
   const [status, setStatus] = useState<null | "loading" | "success">(null);
 
-  const style = isCreate ? { transform: 'rotate(45deg)' } : {};
+  const style = isCreate ? { transform: "rotate(45deg)" } : {};
 
   const handleCancel = () => {
     setIsCreate(false);
-    setInputTitle('');
-    setInputDescription('');
+    setInputTitle("");
+    setInputDescription("");
     setInputDeadline(dayjs());
     setInputLimit(0);
     setInputTag([]);
-    setSelectedType('cha');
+    setSelectedType("cha");
   };
 
   const handleCreate = () => {
@@ -72,7 +74,7 @@ export const NewQuestModalComponent = ({
       trait: typeToTrait(selectedType),
       title: inputTitle,
       description: inputDescription,
-      deadline: inputDeadline?.toISOString() ?? '',
+      deadline: inputDeadline?.toISOString() ?? "",
       max_participants: inputLimit,
       status: 1,
       // tags: inputTag,
@@ -82,7 +84,8 @@ export const NewQuestModalComponent = ({
         handleCancel();
         onCreate();
         setTimeout(() => {
-            setStatus(null);
+          setStatus(null);
+          setIsCreate(undefined);
         }, 500);
       }, 500);
     });
@@ -92,14 +95,16 @@ export const NewQuestModalComponent = ({
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box
         sx={{
-          position: 'absolute',
-          bottom: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '8px',
+          pointerEvents: isCreate ? "all" : "none",
+          position: "absolute",
+          bottom: "24px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "8px",
+          zIndex: 999,
         }}
       >
         <Box
@@ -314,10 +319,10 @@ export const NewQuestModalComponent = ({
         <Box>
           <Button
             sx={{
-              fontSize: '32px',
-              borderRadius: '25px',
-              width: '60px',
-              height: '50px',
+              fontSize: "32px",
+              borderRadius: "25px",
+              width: "60px",
+              height: "50px",
             }}
             variant="contained"
             color="info"
@@ -326,13 +331,14 @@ export const NewQuestModalComponent = ({
             <Box
               sx={{
                 ...style,
-                display: 'flex',
-                height: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: '4px',
-                transition: 'all 0.2s ease-in-out',
-                transformOrigin: 'center',
+                display: "flex",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "4px",
+                transition: "all 0.2s ease-in-out",
+                transformOrigin: "center",
+                pointerEvents: "all",
               }}
             >
               +
