@@ -2,7 +2,10 @@ import { Box, TextField, Typography } from '@mui/material';
 import { DetailedQuest } from '../generated/dto';
 import AddIcon from '@mui/icons-material/Add';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useAnswerBrainQuestsQuestIdAnswerPost } from '../generated/api/default/default';
+import {
+  useAnswerBrainQuestsQuestIdAnswerPost,
+  useToggleFavoriteAnswerQuestIdTogglePost,
+} from '../generated/api/default/default';
 import { BrainAnswer } from '../generated/dto/brainAnswer';
 import { MY_USER_ID } from '../App';
 import { useQuestContext } from '../useQuestContext';
@@ -16,8 +19,21 @@ interface BrainDetailProps {
 
 export function BrainDetail({ quest }: BrainDetailProps) {
   const { trigger: submit } = useAnswerBrainQuestsQuestIdAnswerPost(quest.id);
+  const { trigger: toggleFavorite } = useToggleFavoriteAnswerQuestIdTogglePost(quest.id);
   const { refetchQuests } = useQuestContext();
   const [answerText, setAnswerText] = useState('');
+
+  const isAdmin = quest.author == MY_USER_ID;
+
+  const submitLike = useCallback(
+    (author_id: number) => {
+      if (!isAdmin) return;
+
+      toggleFavorite({ author_id });
+      refetchQuests();
+    },
+    [submit, refetchQuests, answerText, quest],
+  );
 
   const submitAnswer = useCallback(() => {
     const answer: BrainAnswer = {
@@ -87,6 +103,9 @@ export function BrainDetail({ quest }: BrainDetailProps) {
                   text={answer.text}
                 />
                 <Box
+                  onClick={() => {
+                    submitLike(answer.author);
+                  }}
                   sx={{
                     display: 'flex',
                   }}

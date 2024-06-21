@@ -43,6 +43,35 @@ brain1 = Quest(
     deadline=datetime.today() + timedelta(days=1),
 )
 
+brain_answer1 = BrainAnswer(
+    quest=1,
+    author=1,
+    text="Brownies",
+    accepted=True,
+    created_at=datetime.today() - timedelta(days=7),
+)
+brain_answer2 = BrainAnswer(
+    quest=1,
+    author=5,
+    text="Protein",
+    accepted=False,
+    created_at=datetime.today() - timedelta(days=1),
+)
+brain_answer3 = BrainAnswer(
+    quest=1,
+    author=4,
+    text="Cat",
+    accepted=False,
+    created_at=datetime.today() - timedelta(days=3),
+)
+brain_answer4 = BrainAnswer(
+    quest=1,
+    author=7,
+    text="Sonic",
+    accepted=True,
+    created_at=datetime.today() - timedelta(days=8),
+)
+
 brain2 = Quest(
     id=4,
     type=QuestType.BRAIN,
@@ -57,32 +86,75 @@ brain2 = Quest(
     deadline=datetime.today() + timedelta(days=1),
 )
 
-brain_answer1 = BrainAnswer(
-    quest=1,
-    author=1,
-    text="Brownies",
-    accepted=True,
-    created_at=datetime.today() - timedelta(days=2),
-)
-brain_answer2 = BrainAnswer(
-    quest=1,
-    author=5,
-    text="Protein",
-    accepted=False,
-    created_at=datetime.today() - timedelta(days=1),
-)
 
 brawn1 = Quest(
     id=2,
     type=QuestType.BRAWN,
     author=8,
-    title="We need help to prepare the gift packs for EXPO tomorrow!",
+    title="We need help to prepare flyers for the Expo tomorrow!",
     max_participants=20,
     description="",
     status=Status.OPEN,
     trait=Trait.STR,
     deadline=datetime.today() + timedelta(days=4),
 )
+
+brawn_participant1 = BrawnParticipant(
+    quest=2,
+    user=1,
+    created_at=datetime.today() - timedelta(days=2, hours=9),
+)
+brawn_participant2 = BrawnParticipant(
+    quest=2,
+    user=2,
+    created_at=datetime.today() - timedelta(days=3),
+)
+brawn_participant3 = BrawnParticipant(
+    quest=2,
+    user=3,
+    created_at=datetime.today() - timedelta(days=3, hours=4),
+)
+brawn_participant4 = BrawnParticipant(
+    quest=2,
+    user=4,
+    created_at=datetime.today() - timedelta(days=4),
+)
+brawn_participant5 = BrawnParticipant(
+    quest=2,
+    user=5,
+    created_at=datetime.today() - timedelta(days=4),
+)
+brawn_participant6 = BrawnParticipant(
+    quest=2,
+    user=6,
+    created_at=datetime.today() - timedelta(days=5),
+)
+brawn_participant7 = BrawnParticipant(
+    quest=2,
+    user=7,
+    created_at=datetime.today() - timedelta(days=6),
+)
+brawn_participant8 = BrawnParticipant(
+    quest=2,
+    user=8,
+    created_at=datetime.today() - timedelta(days=7),
+)
+brawn_participant9 = BrawnParticipant(
+    quest=2,
+    user=9,
+    created_at=datetime.today() - timedelta(days=8),
+)
+brawn_participant10 = BrawnParticipant(
+    quest=2,
+    user=10,
+    created_at=datetime.today() - timedelta(days=9, hours=3),
+)
+brawn_participant11 = BrawnParticipant(
+    quest=2,
+    user=11,
+    created_at=datetime.today() - timedelta(days=10),
+)
+
 
 brawn2 = Quest(
     id=3,
@@ -108,17 +180,28 @@ brawn3 = Quest(
     deadline=datetime.today() + timedelta(days=4),
 )
 
-brawn_participant1 = BrawnParticipant(
-    quest=2,
-    user=2,
-    created_at=datetime.today() - timedelta(days=2),
-)
-
 
 users = [user1, user2]
 quests = [brain1, brawn1, brawn2, brain2, brawn3]
-brain_answers = [brain_answer1, brain_answer2]
-brawn_participants = [brawn_participant1]
+brain_answers = [
+    brain_answer1,
+    brain_answer2,
+    brain_answer3,
+    brain_answer4,
+]
+brawn_participants = [
+    brawn_participant1,
+    brawn_participant2,
+    brawn_participant3,
+    brawn_participant4,
+    brawn_participant5,
+    brawn_participant6,
+    brawn_participant7,
+    brawn_participant8,
+    brawn_participant9,
+    brawn_participant10,
+    brawn_participant11,
+]
 
 db = {
     Tables.USER: users,

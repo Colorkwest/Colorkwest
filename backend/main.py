@@ -139,3 +139,19 @@ async def cancel_quest(quest_id):
 @app.get("/users")
 async def get_users() -> dict[int, User]:
     return {u.id: u for u in db[Tables.USER]}
+
+
+@app.post("/answer/{quest_id}/toggle")
+async def toggle_favorite(quest_id, json: dict):
+    ans = None
+    for idx, answer in enumerate(db[Tables.BRAIN_ANSWER]):
+        if answer.quest == quest_id and answer.author == json["author"]:
+            ans = answer
+            break
+    else:
+        raise HTTPException(status_code=404, detail="Answer not found")
+
+    ans.accepted = not ans.accepted
+
+    db[Tables.BRAIN_ANSWER][idx] = ans
+    return ans

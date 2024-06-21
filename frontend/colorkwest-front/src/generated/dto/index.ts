@@ -14,6 +14,8 @@ export * from './hTTPValidationError';
 export * from './quest';
 export * from './questType';
 export * from './status';
+export * from './toggleFavoriteAnswerQuestIdTogglePostBody';
+export * from './toggleFavoriteAnswerQuestIdTogglePostParams';
 export * from './trait';
 export * from './user';
 export * from './validationError';

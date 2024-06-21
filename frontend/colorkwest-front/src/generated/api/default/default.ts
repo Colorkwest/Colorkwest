@@ -21,7 +21,8 @@ import type {
   DetailedQuest,
   GetUsersUsersGet200,
   HTTPValidationError,
-  Quest
+  Quest,
+  ToggleFavoriteAnswerQuestIdTogglePostBody
 } from '../../dto'
 import { mutate } from '../../../mutator/mutate';
 
@@ -452,6 +453,52 @@ export const useGetUsersUsersGet = <TError = unknown>(
   const swrFn = () => getUsersUsersGet(requestOptions);
 
   const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+/**
+ * @summary Toggle Favorite
+ */
+export const toggleFavoriteAnswerQuestIdTogglePost = (
+    questId: unknown,
+    toggleFavoriteAnswerQuestIdTogglePostBody: ToggleFavoriteAnswerQuestIdTogglePostBody,
+ options?: SecondParameter<typeof mutate>) => {
+      return mutate<unknown>(
+      {url: `/answer/${questId}/toggle`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: toggleFavoriteAnswerQuestIdTogglePostBody
+    },
+      options);
+    }
+  
+
+
+export const getToggleFavoriteAnswerQuestIdTogglePostMutationFetcher = (questId: unknown, options?: SecondParameter<typeof mutate>) => {
+  return (_: string, { arg }: { arg: ToggleFavoriteAnswerQuestIdTogglePostBody }): Promise<unknown> => {
+    return toggleFavoriteAnswerQuestIdTogglePost(questId, arg, options);
+  }
+}
+export const getToggleFavoriteAnswerQuestIdTogglePostMutationKey = (questId: unknown,) => `/answer/${questId}/toggle` as const;
+
+export type ToggleFavoriteAnswerQuestIdTogglePostMutationResult = NonNullable<Awaited<ReturnType<typeof toggleFavoriteAnswerQuestIdTogglePost>>>
+export type ToggleFavoriteAnswerQuestIdTogglePostMutationError = HTTPValidationError
+
+/**
+ * @summary Toggle Favorite
+ */
+export const useToggleFavoriteAnswerQuestIdTogglePost = <TError = HTTPValidationError>(
+  questId: unknown, options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof toggleFavoriteAnswerQuestIdTogglePost>>, TError, string, ToggleFavoriteAnswerQuestIdTogglePostBody, Awaited<ReturnType<typeof toggleFavoriteAnswerQuestIdTogglePost>>> & { swrKey?: string }, request?: SecondParameter<typeof mutate> }
+) => {
+
+  const {swr: swrOptions, request: requestOptions} = options ?? {}
+
+  const swrKey = swrOptions?.swrKey ?? getToggleFavoriteAnswerQuestIdTogglePostMutationKey(questId);
+  const swrFn = getToggleFavoriteAnswerQuestIdTogglePostMutationFetcher(questId,requestOptions);
+
+  const query = useSWRMutation(swrKey, swrFn, swrOptions)
 
   return {
     swrKey,
