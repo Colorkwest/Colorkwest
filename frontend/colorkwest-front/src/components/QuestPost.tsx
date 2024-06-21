@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { GetUsersUsersGet200 } from '../generated/dto';
 import { DetailedQuest } from '../generated/dto/detailedQuest';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { TraitChip } from './TraitChip';
 import { UserAvatar } from './UserAvatar';
 import { QuestDetail } from './QuestDetail';
@@ -28,6 +28,12 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: Q
     shrinkPrevious();
     setExpanded(true);
   }, [expanded, setShrinkPrevious, setExpanded, shrinkPrevious, setExpanded]);
+
+  const questDetail = useMemo(() => {
+    if (!expanded) return null;
+
+    return <QuestDetail quest={quest} />;
+  }, [expanded]);
 
   return (
     <Box
@@ -85,7 +91,7 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: Q
           </Typography>
         </Box>
       </Box>
-      {expanded && <QuestDetail quest={quest} />}
+      {questDetail}
     </Box>
   );
 }

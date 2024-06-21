@@ -15,6 +15,7 @@ import type {
   SWRMutationConfiguration
 } from 'swr/mutation'
 import type {
+  BrainAnswer,
   CreateQuest,
   DetailedQuest,
   GetUsersUsersGet200,
@@ -188,6 +189,52 @@ export const useEditQuestQuestsQuestIdPatch = <TError = HTTPValidationError>(
 
   const swrKey = swrOptions?.swrKey ?? getEditQuestQuestsQuestIdPatchMutationKey(questId);
   const swrFn = getEditQuestQuestsQuestIdPatchMutationFetcher(questId,requestOptions);
+
+  const query = useSWRMutation(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+/**
+ * @summary Answer Brain
+ */
+export const answerBrainQuestsQuestIdAnswerPut = (
+    questId: unknown,
+    brainAnswer: BrainAnswer,
+ options?: SecondParameter<typeof mutate>) => {
+      return mutate<unknown>(
+      {url: `/quests/${questId}/answer`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: brainAnswer
+    },
+      options);
+    }
+  
+
+
+export const getAnswerBrainQuestsQuestIdAnswerPutMutationFetcher = (questId: unknown, options?: SecondParameter<typeof mutate>) => {
+  return (_: string, { arg }: { arg: BrainAnswer }): Promise<unknown> => {
+    return answerBrainQuestsQuestIdAnswerPut(questId, arg, options);
+  }
+}
+export const getAnswerBrainQuestsQuestIdAnswerPutMutationKey = (questId: unknown,) => `/quests/${questId}/answer` as const;
+
+export type AnswerBrainQuestsQuestIdAnswerPutMutationResult = NonNullable<Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPut>>>
+export type AnswerBrainQuestsQuestIdAnswerPutMutationError = HTTPValidationError
+
+/**
+ * @summary Answer Brain
+ */
+export const useAnswerBrainQuestsQuestIdAnswerPut = <TError = HTTPValidationError>(
+  questId: unknown, options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPut>>, TError, string, BrainAnswer, Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPut>>> & { swrKey?: string }, request?: SecondParameter<typeof mutate> }
+) => {
+
+  const {swr: swrOptions, request: requestOptions} = options ?? {}
+
+  const swrKey = swrOptions?.swrKey ?? getAnswerBrainQuestsQuestIdAnswerPutMutationKey(questId);
+  const swrFn = getAnswerBrainQuestsQuestIdAnswerPutMutationFetcher(questId,requestOptions);
 
   const query = useSWRMutation(swrKey, swrFn, swrOptions)
 

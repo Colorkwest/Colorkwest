@@ -1,24 +1,24 @@
 import { Box, TextField, Typography } from '@mui/material';
 import { DetailedQuest } from '../generated/dto';
 import AddIcon from '@mui/icons-material/Add';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface BrainDetailProps {
   quest: DetailedQuest;
 }
 
 export function BrainDetail({ quest }: BrainDetailProps) {
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Enter') {
-        console.log('yay');
-      }
-    };
-    document.addEventListener('keydown', handleKeyDown, true);
+  const submitAnswer = useCallback(() => {}, []);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.code === 'Enter') {
+      submitAnswer();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown, false);
+    return () => window.removeEventListener('keydown', handleKeyDown, false);
   }, []);
 
   return (

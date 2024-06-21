@@ -2,9 +2,16 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
-from db import (Tables, db, get_brain_answers, get_brawn_participants,
-                get_quest_idx)
-from model import CreateQuest, DetailedQuest, Quest, QuestType, Status, User
+from db import Tables, db, get_brain_answers, get_brawn_participants, get_quest_idx
+from model import (
+    BrainAnswer,
+    CreateQuest,
+    DetailedQuest,
+    Quest,
+    QuestType,
+    Status,
+    User,
+)
 
 app = FastAPI()
 
@@ -21,6 +28,7 @@ app.add_middleware(
 )
 
 nextId = len(db[Tables.QUEST]) + 1
+
 
 def custom_openapi():
     openapi_schema = get_openapi(
@@ -81,6 +89,12 @@ async def edit_quest(quest_id, quest: Quest):
 
     db[Tables.QUEST][qi] = quest
     return db[Tables.QUEST][qi]
+
+
+@app.put("/quests/{quest_id}/answer")
+async def answer_brain(quest_id, answer: BrainAnswer):
+    db[Tables.BRAIN_ANSWER].append(answer)
+    return db[Tables.BRAIN_ANSWER][-1]
 
 
 @app.post("/quests/{quest_id}/complete")
