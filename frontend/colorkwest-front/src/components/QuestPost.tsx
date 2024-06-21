@@ -49,7 +49,7 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious, ava
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <Box onClick={(e: Event) => {
+          <Box sx={{ display: 'flex', gap: 1 }} onClick={(e: Event) => {
             e.stopPropagation();
             avatarClick(quest.author)
           }}>

@@ -17,7 +17,7 @@ export function TrendDisplay({ str, dex, cha, int }: StatDisplayProps) {
 
   return (
     <>
-      <ResponsiveContainer width="100%" height="100%" style={{ backgroundColor: '#f0f0f0' }}>
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           layout='vertical'
