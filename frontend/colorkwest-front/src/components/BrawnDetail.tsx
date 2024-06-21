@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { DetailedQuest } from '../generated/dto';
 import { Box, Typography } from '@mui/material';
 import { UserDisplayRow } from './UserDisplayRow';
+import dayjs from 'dayjs';
 
 interface BrawnDetailProps {
   quest: DetailedQuest;
@@ -41,7 +42,11 @@ export function BrawnDetail({ quest }: BrawnDetailProps) {
               >
                 <UserDisplayRow
                   user={participant.user}
-                  date={`Accepted at ${'put date here'}`}
+                  date={`Accepted at ${dayjs(participant.created_at)
+                    .toDate()
+                    .toLocaleDateString()} ${dayjs(participant.created_at)
+                    .toDate()
+                    .toLocaleTimeString()}`}
                   text={null}
                 />
               </Box>

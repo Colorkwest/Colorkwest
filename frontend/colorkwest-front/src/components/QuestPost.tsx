@@ -103,7 +103,7 @@ export function QuestPost({
               fontWeight: 400,
             }}
           >
-            {quest.brain_answers?.length || 0}
+            {quest.brain_answers?.length || quest.brawn_participants?.length}
             {quest.max_participants ? '/' + quest.max_participants : ''} participant
             {quest.brain_answers?.length != 1 && 's'}
           </Typography>

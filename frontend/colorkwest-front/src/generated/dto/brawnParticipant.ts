@@ -6,6 +6,7 @@
  */
 
 export interface BrawnParticipant {
+  created_at: string;
   quest: number;
   user: number;
 }
