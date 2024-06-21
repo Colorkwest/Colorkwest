@@ -28,7 +28,7 @@ export function BrainDetail({ quest }: BrainDetailProps) {
 
   const submitLike = useCallback(
     (author_id: number) => {
-      if (!isAdmin) return;
+      if (!isAdmin || author_id == MY_USER_ID) return;
 
       toggleFavorite({ author: author_id });
       refetchQuests();
