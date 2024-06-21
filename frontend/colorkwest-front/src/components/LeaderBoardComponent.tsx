@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useGetUsersUsersGet } from '../generated/api/default/default';
 import { Box, Typography, Icon } from '@mui/material';
 import { UserAvatar } from './UserAvatar';
@@ -56,7 +55,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
         }}>
             <Box onClick={(e) => e.stopPropagation()} sx={{
                 position: 'relative',
-                top: '150px',
+                top: '20%',
                 width: '800px',
                 height: '600px',
                 borderRadius: '20px',
@@ -141,7 +140,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                                 <BestWarrior type={4} user={bestAll?.[0]} />
                             </Box>
                             <Box sx={{
-                                marginTop: "190px",
+                                marginTop: "185px",
                             }}>
                                 <BestWarrior type={4} user={bestAll?.[2]} />
                             </Box>
@@ -152,7 +151,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                             textAlign: 'center',
                             marginLeft: "20px",
                             width: "100%",
-                            maxHeight: "200px",
+                            maxHeight: "280px",
                             overflowX: 'auto'
                         }}>
                             {bestAll?.map((value, index) => (

@@ -181,7 +181,7 @@ brawn3 = Quest(
 )
 
 
-users = [user1, user2]
+users = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11]
 quests = [brain1, brawn1, brawn2, brain2, brawn3]
 brain_answers = [
     brain_answer1,
