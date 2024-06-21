@@ -200,12 +200,12 @@ export const useEditQuestQuestsQuestIdPatch = <TError = HTTPValidationError>(
 /**
  * @summary Answer Brain
  */
-export const answerBrainQuestsQuestIdAnswerPut = (
+export const answerBrainQuestsQuestIdAnswerPost = (
     questId: unknown,
     brainAnswer: BrainAnswer,
  options?: SecondParameter<typeof mutate>) => {
       return mutate<unknown>(
-      {url: `/quests/${questId}/answer`, method: 'PUT',
+      {url: `/quests/${questId}/answer`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: brainAnswer
     },
@@ -214,27 +214,27 @@ export const answerBrainQuestsQuestIdAnswerPut = (
   
 
 
-export const getAnswerBrainQuestsQuestIdAnswerPutMutationFetcher = (questId: unknown, options?: SecondParameter<typeof mutate>) => {
+export const getAnswerBrainQuestsQuestIdAnswerPostMutationFetcher = (questId: unknown, options?: SecondParameter<typeof mutate>) => {
   return (_: string, { arg }: { arg: BrainAnswer }): Promise<unknown> => {
-    return answerBrainQuestsQuestIdAnswerPut(questId, arg, options);
+    return answerBrainQuestsQuestIdAnswerPost(questId, arg, options);
   }
 }
-export const getAnswerBrainQuestsQuestIdAnswerPutMutationKey = (questId: unknown,) => `/quests/${questId}/answer` as const;
+export const getAnswerBrainQuestsQuestIdAnswerPostMutationKey = (questId: unknown,) => `/quests/${questId}/answer` as const;
 
-export type AnswerBrainQuestsQuestIdAnswerPutMutationResult = NonNullable<Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPut>>>
-export type AnswerBrainQuestsQuestIdAnswerPutMutationError = HTTPValidationError
+export type AnswerBrainQuestsQuestIdAnswerPostMutationResult = NonNullable<Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPost>>>
+export type AnswerBrainQuestsQuestIdAnswerPostMutationError = HTTPValidationError
 
 /**
  * @summary Answer Brain
  */
-export const useAnswerBrainQuestsQuestIdAnswerPut = <TError = HTTPValidationError>(
-  questId: unknown, options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPut>>, TError, string, BrainAnswer, Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPut>>> & { swrKey?: string }, request?: SecondParameter<typeof mutate> }
+export const useAnswerBrainQuestsQuestIdAnswerPost = <TError = HTTPValidationError>(
+  questId: unknown, options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPost>>, TError, string, BrainAnswer, Awaited<ReturnType<typeof answerBrainQuestsQuestIdAnswerPost>>> & { swrKey?: string }, request?: SecondParameter<typeof mutate> }
 ) => {
 
   const {swr: swrOptions, request: requestOptions} = options ?? {}
 
-  const swrKey = swrOptions?.swrKey ?? getAnswerBrainQuestsQuestIdAnswerPutMutationKey(questId);
-  const swrFn = getAnswerBrainQuestsQuestIdAnswerPutMutationFetcher(questId,requestOptions);
+  const swrKey = swrOptions?.swrKey ?? getAnswerBrainQuestsQuestIdAnswerPostMutationKey(questId);
+  const swrFn = getAnswerBrainQuestsQuestIdAnswerPostMutationFetcher(questId,requestOptions);
 
   const query = useSWRMutation(swrKey, swrFn, swrOptions)
 

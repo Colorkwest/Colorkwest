@@ -5,6 +5,8 @@ import { QuestBoard } from './components/QuestBoard.tsx';
 import { Box, Typography } from '@mui/material';
 import { NewQuestModalComponent } from './components/NewQuestComponent.tsx';
 
+export const MY_USER_ID = 2;
+
 function App() {
   const [selectedTab, setSelectedTab] = useState(0);
 

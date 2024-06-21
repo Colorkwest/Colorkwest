@@ -6,15 +6,17 @@ import { QuestPost } from './QuestPost';
 import { useEffect, useState } from 'react';
 import { DetailedQuest } from '../generated/dto';
 import { UserAvatar } from './UserAvatar';
+import { MY_USER_ID } from '../App';
+import { QuestContext } from '../useQuestContext';
+import { StatDisplay } from './StatDisplay';
 
 type QuestBoardProps = {
   selectedTab: number;
 };
 
-const MY_USER_ID = 2;
-
 export function QuestBoard({ selectedTab }: QuestBoardProps) {
-  const { data: quests } = useGetQuestsQuestsGet();
+  const { data: questData, mutate: refetchQuestData } = useGetQuestsQuestsGet();
+
   const { data: users } = useGetUsersUsersGet();
   const [filteredQuests, setFilteredQuests] = useState<DetailedQuest[]>([]);
 
@@ -22,10 +24,10 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   const [loginedUserID, setLoginUserID] = useState<number>(1);
 
   useEffect(() => {
-    if (!quests) setFilteredQuests([]);
+    if (!questData) setFilteredQuests([]);
 
     setFilteredQuests(
-      quests?.filter((quest) => {
+      questData?.filter((quest) => {
         switch (selectedTab) {
           case 0: // All Quests
             return true;
@@ -41,10 +43,10 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
         }
       }) || [],
     );
-  }, [quests, selectedTab]);
+  }, [questData, selectedTab]);
 
   const [shrinkPrevious, setShrinkPrevious] = useState(() => {
-    return () => { };
+    return () => {};
   });
 
   // Escape key to unfocus quest
@@ -53,7 +55,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
       if (event.code === 'Escape') {
         shrinkPrevious();
         setShrinkPrevious(() => {
-          return () => { };
+          return () => {};
         });
       }
     }
@@ -63,50 +65,63 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
   }, [shrinkPrevious, setShrinkPrevious]);
 
   return (
-    <Box
-      sx={{
-        paddingY: 4,
-        display: 'flex',
-        flexDirection: 'column',
-        height: 'calc(100% - 48px)',
-        position: 'relative',
-      }}
-    >
-      <Masonry columns={3} spacing={2} sequential>
-        {filteredQuests.map((quest) => (
-          <QuestPost
-            key={quest.id}
-            quest={quest}
-            users={users}
-            shrinkPrevious={shrinkPrevious}
-            setShrinkPrevious={setShrinkPrevious}
-            avatarClick={setSelectedUserID}
-          />
-        ))}
-      </Masonry>
+    <>
       <Box
         sx={{
           position: 'fixed',
           right: '20px',
           top: '20px',
-        }} onClick={() => setSelectedUserID(loginedUserID)}>
+        }}
+        onClick={() => setSelectedUserID(loginedUserID)}
+      >
         <UserAvatar user_id={loginedUserID} />
       </Box>
-      {
-        selectedUserID &&
-        <Box onClick={() => { setSelectedUserID(null); }}
+      {selectedUserID && (
+        <Box
+          onClick={() => {
+            setSelectedUserID(null);
+          }}
           sx={{
             position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            zIndex: 999
+            zIndex: 999,
           }}
         >
           <ProfileComponent userID={selectedUserID} />
         </Box>
-      }
-    </Box >
+      )}
+      <QuestContext.Provider value={{ quests: questData, refetchQuests: refetchQuestData }}>
+        <Box
+          sx={{
+            paddingY: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            height: 'calc(100% - 48px)',
+            position: 'relative',
+          }}
+        >
+          <Masonry columns={3} spacing={2} sequential>
+            {filteredQuests.map((quest) => (
+              <QuestPost
+                avatarClick={() => {
+                  setSelectedUserID(quest.author);
+                }}
+                key={quest.id}
+                quest={quest}
+                users={users}
+                shrinkPrevious={shrinkPrevious}
+                setShrinkPrevious={setShrinkPrevious}
+              />
+            ))}
+          </Masonry>
+          <Box width={600} height={600}>
+            <StatDisplay str={10} cha={10} int={20} dex={40} />
+          </Box>
+        </Box>
+      </QuestContext.Provider>
+    </>
   );
 }

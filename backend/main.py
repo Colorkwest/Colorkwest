@@ -58,6 +58,8 @@ async def get_quests() -> list[DetailedQuest]:
 
         if q.type == QuestType.BRAIN:
             brain_answers = get_brain_answers(q.id)
+            print("crazy")
+            print(brain_answers)
         elif q.type == QuestType.BRAWN:
             brawn_participants = get_brawn_participants(q.id)
 
@@ -91,7 +93,7 @@ async def edit_quest(quest_id, quest: Quest):
     return db[Tables.QUEST][qi]
 
 
-@app.put("/quests/{quest_id}/answer")
+@app.post("/quests/{quest_id}/answer")
 async def answer_brain(quest_id, answer: BrainAnswer):
     db[Tables.BRAIN_ANSWER].append(answer)
     return db[Tables.BRAIN_ANSWER][-1]

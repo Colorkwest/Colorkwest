@@ -14,7 +14,13 @@ interface QuestPostProps {
   avatarClick: (x: number | null) => void;
 }
 
-export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious, avatarClick }: QuestPostProps) {
+export function QuestPost({
+  quest,
+  users,
+  shrinkPrevious,
+  setShrinkPrevious,
+  avatarClick,
+}: QuestPostProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [inputAnswer, setInputAnswer] = useState<string>('');
 
@@ -49,10 +55,13 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious, ava
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <Box sx={{ display: 'flex', gap: 1 }} onClick={(e: Event) => {
-            e.stopPropagation();
-            avatarClick(quest.author)
-          }}>
+          <Box
+            sx={{ display: 'flex', gap: 1 }}
+            onClick={(e: Event) => {
+              e.stopPropagation();
+              avatarClick(quest.author);
+            }}
+          >
             <UserAvatar user_id={quest.author} />
           </Box>
           <Box>
