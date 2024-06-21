@@ -34,6 +34,20 @@ brain1 = Quest(
     deadline=datetime.today() + timedelta(days=1),
 )
 
+brain2 = Quest(
+    id=4,
+    type=QuestType.BRAIN,
+    author=2,
+    title="Please introduce people around you to me!",
+    max_participants=0,
+    description="""1. South Korean
+2. Japanese living in South Korea
+3. Japanese working for a South Korea company""",
+    status=Status.OPEN,
+    trait=Trait.INT,
+    deadline=datetime.today() + timedelta(days=1),
+)
+
 brain_answer1 = BrainAnswer(quest=1, author=1, text="Protein", accepted=False)
 
 brawn1 = Quest(
@@ -41,8 +55,32 @@ brawn1 = Quest(
     type=QuestType.BRAWN,
     author=1,
     title="We need help to prepare the gift packs for EXPO tomorrow!",
-    max_participants=3,
+    max_participants=20,
     description="",
+    status=Status.OPEN,
+    trait=Trait.STR,
+    deadline=datetime.today() + timedelta(days=4),
+)
+
+brawn2 = Quest(
+    id=3,
+    type=QuestType.BRAWN,
+    author=1,
+    title="Any volunteer to host next Friday’s Joyful Studio?",
+    max_participants=5,
+    description="We are open to multiple participants",
+    status=Status.OPEN,
+    trait=Trait.DEX,
+    deadline=datetime.today() + timedelta(days=4),
+)
+
+brawn3 = Quest(
+    id=3,
+    type=QuestType.BRAWN,
+    author=1,
+    title="Can anyone go to lunch with Fred?",
+    max_participants=3,
+    description="He likes everything except raw fish!",
     status=Status.OPEN,
     trait=Trait.STR,
     deadline=datetime.today() + timedelta(days=4),
@@ -51,7 +89,7 @@ brawn1 = Quest(
 brawn_participant1 = BrawnParticipant(quest=1, user=2)
 
 users = [user1, user2]
-quests = [brain1, brawn1]
+quests = [brain1, brawn1, brawn2, brain2, brawn3]
 brain_answers = [brain_answer1]
 brawn_participants = [brawn_participant1]
 

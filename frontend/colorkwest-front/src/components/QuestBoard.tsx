@@ -68,7 +68,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
         position: 'relative',
       }}
     >
-      <Masonry columns={3} spacing={2}>
+      <Masonry columns={3} spacing={2} sequential>
         {filteredQuests.map((quest) => (
           <QuestPost
             key={quest.id}

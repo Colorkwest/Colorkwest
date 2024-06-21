@@ -53,7 +53,18 @@ export function QuestPost({ quest, users, shrinkPrevious, setShrinkPrevious }: Q
             >
               {quest.title}
             </Typography>
-            <Typography color="text.secondary">{quest.description}</Typography>
+            <Box
+              sx={{
+                whiteSpace: 'pre-wrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                WebkitLineClamp: expanded ? 20 : 2,
+                WebkitBoxOrient: 'vertical',
+              }}
+            >
+              <Typography color="text.secondary">{quest.description}</Typography>
+            </Box>
           </Box>
         </Box>
         <Stack direction="row" spacing={1}>
