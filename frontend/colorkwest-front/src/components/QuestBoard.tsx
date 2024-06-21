@@ -117,18 +117,7 @@ export function QuestBoard({ selectedTab }: QuestBoardProps) {
           }}
         >
           <Masonry columns={3} spacing={2} sequential>
-            {filteredQuests.map((quest) => (
-              <QuestPost
-                avatarClick={() => {
-                  setSelectedUserID(quest.author);
-                }}
-                key={quest.id}
-                quest={quest}
-                users={users}
-                shrinkPrevious={shrinkPrevious}
-                setShrinkPrevious={setShrinkPrevious}
-              />
-            ))}
+            {questDisplay}
           </Masonry>
         </Box>
         <NewQuestModalComponent

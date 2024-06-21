@@ -12,6 +12,7 @@ import { useQuestContext } from '../useQuestContext';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import dayjs from 'dayjs';
 import { UserDisplayRow } from './UserDisplayRow';
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 
 interface BrainDetailProps {
   quest: DetailedQuest;
@@ -29,7 +30,7 @@ export function BrainDetail({ quest }: BrainDetailProps) {
     (author_id: number) => {
       if (!isAdmin) return;
 
-      toggleFavorite({ author_id });
+      toggleFavorite({ author: author_id });
       refetchQuests();
     },
     [submit, refetchQuests, answerText, quest],
@@ -108,10 +109,13 @@ export function BrainDetail({ quest }: BrainDetailProps) {
                   }}
                   sx={{
                     display: 'flex',
+                    cursor: isAdmin ? 'pointer' : 'none',
                   }}
                 >
                   {answer.accepted ? (
                     <ThumbUpIcon color={'secondary'} />
+                  ) : isAdmin ? (
+                    <ThumbUpAltOutlinedIcon color={'secondary'} />
                   ) : (
                     <Box sx={{ color: 'white' }}>
                       <ThumbUpIcon color={'inherit'} />
