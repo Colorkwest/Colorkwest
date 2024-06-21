@@ -1,6 +1,5 @@
 import { Box, TextField, Typography } from '@mui/material';
 import { DetailedQuest } from '../generated/dto';
-import AddIcon from '@mui/icons-material/Add';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   useAnswerBrainQuestsQuestIdAnswerPost,
@@ -143,9 +142,6 @@ export function BrainDetail({ quest }: BrainDetailProps) {
           padding: '24px 0px',
         }}
       >
-        <Typography color="text.secondary">
-          <AddIcon />
-        </Typography>
         <TextField
           label="Type your answer"
           size="small"
