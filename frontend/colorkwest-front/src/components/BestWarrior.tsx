@@ -39,8 +39,10 @@ export const BestWarrior = ({ user, type }: Props) => {
             {user && (
                 <>
                     <Box sx={{
+                        display: 'flex',
                         width: '100%',
-                        alignContent: 'center'
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}>
                         <UserAvatar user_id={Number(user.id)} />
                     </Box>
@@ -51,20 +53,32 @@ export const BestWarrior = ({ user, type }: Props) => {
                             alignContent: 'center',
                         }}
                     >{user.name}</Typography>
-                    <Typography
-                        sx={{
-                            fontSize: '14px',
-                            alignContent: 'center',
-                            color: color[Math.floor(type / 2)],
-                        }}
-                    >{bestTitle[type]}</Typography>
-                    <Typography
-                        sx={{
-                            fontSize: '14px',
-                            alignContent: 'center',
-                            color: color[Math.floor(type / 2)],
-                        }}
-                    >Lv: {score()}</Typography>
+                    {type === 4 ? (
+                        <Typography
+                            sx={{
+                                fontSize: '14px',
+                                fontWeight: 800,
+                                alignContent: 'center',
+                            }}
+                        >{score()}</Typography>
+                    ) : (
+                        <>
+                            <Typography
+                                sx={{
+                                    fontSize: '14px',
+                                    alignContent: 'center',
+                                    color: color[Math.floor(type / 2)],
+                                }}
+                            >{bestTitle[type]}</Typography>
+                            <Typography
+                                sx={{
+                                    fontSize: '14px',
+                                    alignContent: 'center',
+                                    color: color[Math.floor(type / 2)],
+                                }}
+                            >Lv: {score()}</Typography>
+                        </>
+                    )}
                 </>
             )}
         </Box>

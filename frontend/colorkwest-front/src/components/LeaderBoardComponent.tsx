@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGetUsersUsersGet } from '../generated/api/default/default';
 import { Box, Typography, Icon } from '@mui/material';
-// import { UserAvatar } from './UserAvatar';
+import { UserAvatar } from './UserAvatar';
 import { BestWarrior } from './BestWarrior';
 
 interface Props {
@@ -58,7 +58,7 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                 position: 'relative',
                 top: '150px',
                 width: '800px',
-                height: '500px',
+                height: '600px',
                 borderRadius: '20px',
                 margin: 'auto',
                 backgroundColor: 'white',
@@ -114,22 +114,94 @@ export const LeaderBoardComponent = ({ handleClose }: Props) => {
                         display: 'flex',
                         flexDirection: 'column',
                         textAlign: 'center',
-                        flex: 3
+                        flex: 3,
+                        width: "379px",
+                        backgroundSize: "contain",
+                        backgroundImage: "url('src/assets/rankcup.svg')",
+                        backgroundRepeat: "no-repeat",
+                        alignItems: 'center'
                     }}>
                         <Box sx={{
-                            display: 'flex',
+                            // width: "379px",
+                            display: "flex",
+                            paddingLeft: "20px",
                             flexDirection: 'row',
+                            justifyContent: 'center'
                         }}>
-                            <BestWarrior type={5} user={bestAll?.[1]} />
-                            <BestWarrior type={5} user={bestAll?.[0]} />
-                            <BestWarrior type={5} user={bestAll?.[2]} />
+                            <Box sx={{
+                                marginTop: "160px",
+                            }}>
+                                <BestWarrior type={4} user={bestAll?.[1]} />
+                            </Box>
+                            <Box sx={{
+                                marginTop: "120px",
+                            }}>
+                                <BestWarrior type={4} user={bestAll?.[0]} />
+                            </Box>
+                            <Box sx={{
+                                marginTop: "180px",
+                            }}>
+                                <BestWarrior type={4} user={bestAll?.[2]} />
+                            </Box>
                         </Box>
                         <Box sx={{
                             display: 'flex',
                             flexDirection: 'column',
                             textAlign: 'center',
+                            marginLeft: "20px",
+                            width: "100%",
+                            maxHeight: "200px",
+                            overflowX: 'auto'
                         }}>
-                            {bestAll?.map((value, index) => (<div key={index} >{index}th {value.name} {value.score}</div>))}
+                            {bestAll?.map((value, index) => (
+                                index >= 3 && (
+                                    <Box sx={{
+                                        borderRadius: '5px',
+                                        backgroundColor: '#F8F8F7',
+                                        height: "48px",
+                                        margin: "3px 0",
+                                        display: 'flex'
+                                    }} key={index}>
+                                        <Typography
+                                            sx={{
+                                                flex: 1,
+                                                fontSize: '14px',
+                                                fontWeight: 800,
+                                                alignContent: 'center',
+                                            }}
+                                        >{index + 1}th
+                                        </Typography>
+                                        <Box sx={{
+                                            display: 'flex',
+                                            flex: 1,
+                                            alignContent: 'center',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                            <UserAvatar user_id={Number(value.id)} />
+                                        </Box>
+                                        <Typography
+                                            sx={{
+                                                flex: 3,
+                                                fontSize: '14px',
+                                                fontWeight: 800,
+                                                alignContent: 'center',
+                                                textAlign: 'left'
+                                            }}
+                                        >{value.name}
+                                        </Typography>
+                                        <Typography
+                                            sx={{
+                                                flex: 1,
+                                                fontSize: '14px',
+                                                fontWeight: 800,
+                                                alignContent: 'center',
+                                            }}
+                                        >{value.score}
+                                        </Typography>
+                                    </Box>
+                                )
+                            ))}
                         </Box>
                     </Box>
                     <Box sx={{
